@@ -1,0 +1,24 @@
+{
+  "name": "typescript-algorithms",
+  "version": "1.0.0",
+  "description": "使用TypeScript实现数据结构和算法",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangchen130/typescript-algorithms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangchen130/typescript-algorithms/issues"
+  },
+  "homepage": "https://github.com/wangchen130/typescript-algorithms#readme",
+  "devDependencies": {
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}

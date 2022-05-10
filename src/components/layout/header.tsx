@@ -1,10 +1,13 @@
 import { Layout } from 'antd';
-import { Link } from 'dva/router';
+// import { Link } from 'dva/router';
+import { router } from 'dva';
 import React from 'react';
 import { ReactComponent as SvgComponent } from 'src/public/react.svg';
 import { menuTree } from 'src/config/menu';
 import Menu from './menu';
 import styles from './index.less?local';
+
+const { Link } = router;
 
 const Header = ({ pathname }) => {
   return (

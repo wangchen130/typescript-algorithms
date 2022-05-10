@@ -2,8 +2,11 @@ import React from 'react';
 import pathToRegexp from 'path-to-regexp';
 import { Menu } from 'antd';
 import { MenuProps } from 'antd/es/menu';
-import { Link } from 'dva/router';
+// import { Link } from 'dva/router';
+import { router } from 'dva';
 import { MenuItemType } from 'src/config/menu';
+
+const { Link } = router;
 
 export interface MenuPropsType extends MenuProps {
   menuData: MenuItemType[];
@@ -51,6 +54,7 @@ const Menus: React.FC<MenuPropsType> = ({
       }
 
       return (
+        // @ts-ignore
         <Menu.Item key={item.id} title={collapsed ? item.name : ''}>
           <Link to={route || '#'}>
             {item.icon}
@@ -89,6 +93,7 @@ const Menus: React.FC<MenuPropsType> = ({
   const menuItems = getMenus(menuData);
 
   return (
+    // @ts-ignore
     <Menu {...otherProps} selectedKeys={defaultSelectedKeys}>
       {menuItems}
     </Menu>

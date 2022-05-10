@@ -312,7 +312,8 @@ module.exports = {
       patterns: [
         {
           from: PUBLIC_DIR,
-          to: 'public',
+          // to: 'public',
+          to: '',
         },
       ],
     }),

@@ -1,4 +1,4 @@
-export default class ArrayQueue<T> {
+export default class Queue<T> {
   public items: Array<T>
 
   constructor() {

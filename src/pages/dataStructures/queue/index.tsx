@@ -2,14 +2,13 @@ import { Typography } from 'antd';
 import React from 'react';
 import 'src/code/dataStructures/sparseArray';
 import queueImg from 'src/public/queue.png';
-import { testArrayQueue, testCircleArrayQueue } from 'src/code/dataStructures/queue';
+import { testQueue } from 'src/code/dataStructures/queue';
 import { customEffect } from 'src/utils/customEffect';
 
 const { Title, Paragraph } = Typography;
 
 const Comp: React.FC = () => {
-  customEffect(testArrayQueue);
-  customEffect(testCircleArrayQueue);
+  customEffect(testQueue);
   return (
     <Typography>
       <Title level={3}>队列：queue</Title>

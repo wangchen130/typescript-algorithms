@@ -34,6 +34,11 @@ const menuTreeOrigin = [
         name: '链表',
         route: '/dataStructures/linkedList',
       },
+      {
+        id: 'doublyLinkedList',
+        name: '双向链表',
+        route: '/dataStructures/doublyLinkedList',
+      },
     ],
   },
   {

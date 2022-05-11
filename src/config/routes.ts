@@ -27,6 +27,10 @@ const adminRoutes: RouteItemType[] = [
         path: '/linkedList',
         component: () => import('src/pages/dataStructures/linkedList'),
       },
+      {
+        path: '/doublyLinkedList',
+        component: () => import('src/pages/dataStructures/doublyLinkedList'),
+      },
     ],
   },
 ];

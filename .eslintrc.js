@@ -94,8 +94,8 @@ module.exports = {
     'react/state-in-constructor': 0,
     'react/static-property-placement': 0,
     'react/jsx-curly-newline': 0,
-    'arrow-body-style': 0,
-    'arrow-parens': 0,
+    // 'arrow-body-style': 0,
+    // 'arrow-parens': 0,
     'object-curly-newline': 0,
     'implicit-arrow-linebreak': 0,
     'operator-linebreak': 0,
@@ -103,7 +103,9 @@ module.exports = {
     'space-before-function-paren': 0,
     'import/extensions': 0,
     'generator-star-spacing': ['error', 'before'],
-    'no-array-constructor': 0
+    'no-array-constructor': 0,
+    'max-classes-per-file': 0,
+    'class-methods-use-this': 0
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

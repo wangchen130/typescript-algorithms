@@ -23,6 +23,10 @@ const adminRoutes: RouteItemType[] = [
         path: '/queue',
         component: () => import('src/pages/dataStructures/queue'),
       },
+      {
+        path: '/linkedList',
+        component: () => import('src/pages/dataStructures/linkedList'),
+      },
     ],
   },
 ];

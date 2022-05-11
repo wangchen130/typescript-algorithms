@@ -29,6 +29,11 @@ const menuTreeOrigin = [
         name: '队列',
         route: '/dataStructures/queue',
       },
+      {
+        id: 'linkedList',
+        name: '链表',
+        route: '/dataStructures/linkedList',
+      },
     ],
   },
   {

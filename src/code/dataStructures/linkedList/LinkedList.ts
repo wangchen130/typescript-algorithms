@@ -74,6 +74,75 @@ export default class LinkedList<T> {
     return true;
   }
 
+  public getData (position: number): T {
+    if (position < 0 || position >= this.length) return null;
+    let current = this.head;
+    let index = 0;
+    while (index < position) {
+      current = current.next;
+      index++;
+    }
+    return current.data;
+  }
+
+  public indexOf (data: T): number {
+    let index = 0;
+    let current = this.head;
+    while (current) {
+      if (data === current.data) {
+        return index;
+      }
+      index++;
+      current = current.next;
+    }
+    return -1;
+  }
+
+  public update (position: number, data: T): boolean | Node<T> {
+    if (position < 0 || position >= this.length) return false;
+    let index = 0;
+    let current = this.head;
+    while (index < position) {
+      index++;
+      current = current.next;
+    }
+    current.data = data;
+    return current;
+  }
+
+  public removeAt (position: number): boolean | Node<T> {
+    if (position < 0 || position >= this.length) return false;
+    let index = 0;
+    let current = this.head;
+    let prev = null;
+    // 删除第一个节点
+    if (position === 0) {
+      this.head = current.next;
+    } else {
+      while (index < position) {
+        index++;
+        prev = current;
+        current = current.next;
+      }
+      prev.next = current.next;
+    }
+    this.length--;
+    return current;
+  }
+
+  public remove (data: T): boolean | Node<T> {
+    const index = this.indexOf(data);
+    return this.removeAt(index);
+  }
+
+  public isEmpty(): boolean {
+    return this.length === 0;
+  }
+
+  public size(): number {
+    return this.length;
+  }
+
   public toString (): string {
     let resultStr = `链表长度length为： ${this.length}， 数据为：`;
     let current = this.head;

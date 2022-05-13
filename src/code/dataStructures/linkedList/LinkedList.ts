@@ -1,4 +1,4 @@
-class Node<T> {
+export class Node<T> {
   public data: T;
 
   public next: Node<T>
@@ -9,7 +9,7 @@ class Node<T> {
   }
 }
 
-export default class LinkedList<T> {
+export class LinkedList<T> {
   public head: Node<T>
 
   public length: number
@@ -157,3 +157,5 @@ export default class LinkedList<T> {
     return resultStr;
   }
 }
+
+export default LinkedList;

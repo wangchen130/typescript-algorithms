@@ -51,9 +51,9 @@ const menuTreeOrigin = [
     name: '算法',
     children: [
       {
-        id: 'josephuQuestion',
+        id: 'josepfuQuestion',
         name: '约瑟夫问题',
-        route: '/algorithms/josephuQuestion',
+        route: '/algorithms/josepfuQuestion',
       },
     ],
   },

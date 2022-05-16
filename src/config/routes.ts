@@ -41,8 +41,8 @@ const adminRoutes: RouteItemType[] = [
     path: '/algorithms',
     childRoutes: [
       {
-        path: '/josephuQuestion',
-        component: () => import('src/pages/algorithms/josephuQuestion'),
+        path: '/josepfuQuestion',
+        component: () => import('src/pages/algorithms/josepfuQuestion'),
       },
     ],
   },

@@ -24,12 +24,25 @@ const adminRoutes: RouteItemType[] = [
         component: () => import('src/pages/dataStructures/queue'),
       },
       {
+        path: '/stack',
+        component: () => import('src/pages/dataStructures/stack'),
+      },
+      {
         path: '/linkedList',
         component: () => import('src/pages/dataStructures/linkedList'),
       },
       {
         path: '/doublyLinkedList',
         component: () => import('src/pages/dataStructures/doublyLinkedList'),
+      },
+    ],
+  },
+  {
+    path: '/algorithms',
+    childRoutes: [
+      {
+        path: '/josephuQuestion',
+        component: () => import('src/pages/algorithms/josephuQuestion'),
       },
     ],
   },

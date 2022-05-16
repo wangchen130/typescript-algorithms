@@ -30,6 +30,11 @@ const menuTreeOrigin = [
         route: '/dataStructures/queue',
       },
       {
+        id: 'stack',
+        name: '栈',
+        route: '/dataStructures/stack',
+      },
+      {
         id: 'linkedList',
         name: '链表',
         route: '/dataStructures/linkedList',
@@ -44,7 +49,13 @@ const menuTreeOrigin = [
   {
     id: 'algorithms',
     name: '算法',
-    route: '/algorithms',
+    children: [
+      {
+        id: 'josephuQuestion',
+        name: '约瑟夫问题',
+        route: '/algorithms/josephuQuestion',
+      },
+    ],
   },
 ];
 

@@ -35,6 +35,6 @@ export default class Queue<T> {
   }
 
   public toString (): string {
-    return this.items.join('-');
+    return `队头：${this.items.join(' ')} 队尾`;
   }
 }

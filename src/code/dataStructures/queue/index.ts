@@ -19,3 +19,7 @@ export const testQueue = () => {
   console.log('队列长度为：', queue.size());
   console.log('====================ArrayQueue测试结束=============');
 };
+
+export const test002 = () => {
+  console.log('test002');
+};

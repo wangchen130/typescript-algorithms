@@ -1,6 +1,5 @@
 import { Typography } from 'antd';
 import React from 'react';
-import 'src/code/dataStructures/sparseArray';
 import queueImg from 'src/public/queue.png';
 import { testQueue } from 'src/code/dataStructures/queue';
 import { customEffect } from 'src/utils/customEffect';

@@ -2,7 +2,7 @@ export class Stack<T> {
   private readonly stack: T[];
 
   constructor() {
-    this.stack = [];
+    this.stack = new Array<T>();
   }
 
   // push(element):添加一个新元素到栈顶位置

@@ -105,7 +105,8 @@ module.exports = {
     'generator-star-spacing': ['error', 'before'],
     'no-array-constructor': 0,
     'max-classes-per-file': 0,
-    'class-methods-use-this': 0
+    'class-methods-use-this': 0,
+    // 'no-lonely-if': 0,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

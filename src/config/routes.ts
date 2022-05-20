@@ -44,6 +44,10 @@ const adminRoutes: RouteItemType[] = [
         path: '/josepfuQuestion',
         component: () => import('src/pages/algorithms/josepfuQuestion'),
       },
+      {
+        path: '/mazeQuestion',
+        component: () => import('src/pages/algorithms/mazeQuestion'),
+      },
     ],
   },
 ];

@@ -55,6 +55,11 @@ const menuTreeOrigin = [
         name: '约瑟夫问题',
         route: '/algorithms/josepfuQuestion',
       },
+      {
+        id: 'mazeQuestion',
+        name: '迷宫问题',
+        route: '/algorithms/mazeQuestion',
+      },
     ],
   },
 ];

@@ -41,6 +41,10 @@ const adminRoutes: RouteItemType[] = [
     path: '/algorithms',
     childRoutes: [
       {
+        path: '/bubbleSort',
+        component: () => import('src/pages/algorithms/sort/bubbleSort'),
+      },
+      {
         path: '/josepfuQuestion',
         component: () => import('src/pages/algorithms/josepfuQuestion'),
       },

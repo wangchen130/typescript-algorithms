@@ -47,42 +47,36 @@ const menuTreeOrigin = [
     ],
   },
   {
-    id: 'algorithms',
-    name: '算法',
+    id: 'sortAlgorithms',
+    name: '排序算法',
     children: [
       {
-        id: 'sortAlgorithms',
-        name: '排序算法',
-        children: [
-          {
-            id: 'josepfuQuestion',
-            name: '约瑟夫问题',
-            route: '/algorithms/josepfuQuestion',
-          },
-        ]
+        id: 'bubbleSort',
+        name: '冒泡排序',
+        route: '/algorithms/bubbleSort',
+      },
+    ]
+  },
+  {
+    id: 'otherAlgorithms',
+    name: '其他算法',
+    children: [
+      {
+        id: 'josepfuQuestion',
+        name: '约瑟夫问题',
+        route: '/algorithms/josepfuQuestion',
       },
       {
-        id: 'otherAlgorithms',
-        name: '其他算法',
-        children: [
-          {
-            id: 'josepfuQuestion',
-            name: '约瑟夫问题',
-            route: '/algorithms/josepfuQuestion',
-          },
-          {
-            id: 'mazeQuestion',
-            name: '迷宫问题',
-            route: '/algorithms/mazeQuestion',
-          },
-          {
-            id: 'eightQueens',
-            name: '八皇后问题',
-            route: '/algorithms/eightQueens',
-          },
-        ]
+        id: 'mazeQuestion',
+        name: '迷宫问题',
+        route: '/algorithms/mazeQuestion',
       },
-    ],
+      {
+        id: 'eightQueens',
+        name: '八皇后问题',
+        route: '/algorithms/eightQueens',
+      },
+    ]
   },
 ];
 

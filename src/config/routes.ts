@@ -48,6 +48,10 @@ const adminRoutes: RouteItemType[] = [
         path: '/mazeQuestion',
         component: () => import('src/pages/algorithms/mazeQuestion'),
       },
+      {
+        path: '/eightQueens',
+        component: () => import('src/pages/algorithms/eightQueens'),
+      },
     ],
   },
 ];

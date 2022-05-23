@@ -60,6 +60,11 @@ const menuTreeOrigin = [
         name: '迷宫问题',
         route: '/algorithms/mazeQuestion',
       },
+      {
+        id: 'eightQueens',
+        name: '八皇后问题',
+        route: '/algorithms/eightQueens',
+      },
     ],
   },
 ];

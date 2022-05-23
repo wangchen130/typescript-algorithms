@@ -55,6 +55,11 @@ const menuTreeOrigin = [
         name: '冒泡排序',
         route: '/algorithms/bubbleSort',
       },
+      {
+        id: 'selectSort',
+        name: '选择排序',
+        route: '/algorithms/selectSort',
+      },
     ]
   },
   {

@@ -30,4 +30,54 @@ export default class Sort {
       }
     }
   }
+
+  /**
+   * 选择排序
+   * @param array 需要排序的数组
+   * @param sortType 排序类型，asc： 升序。desc： 降序。
+   */
+  public static selectSort<T>(array: T[], sortType: 'asc' | 'desc' = 'asc') {
+    const len = array.length;
+    if (len < 2) return;
+    for (let i = 0; i < len; i++) {
+      let index = i;
+      for (let j = index + 1; j < len; j++) {
+        if (sortType === 'asc') { // 升序
+          if (array[j] < array[index]) {
+            index = j;
+          }
+        } else if (sortType === 'desc') { // 降序
+          if (array[j] > array[index]) {
+            index = j;
+          }
+        }
+      }
+      this.swap(array, i, index);
+    }
+  }
+
+  /**
+   * 插入排序
+   * @param array 需要排序的数组
+   * @param sortType 排序类型，asc： 升序。desc： 降序。
+   */
+  public static insertSort<T>(array: T[], sortType: 'asc' | 'desc' = 'asc') {
+    const len = array.length;
+    if (len < 2) return;
+    for (let i = 0; i < len; i++) {
+      let index = i;
+      for (let j = index + 1; j < len; j++) {
+        if (sortType === 'asc') { // 升序
+          if (array[j] < array[index]) {
+            index = j;
+          }
+        } else if (sortType === 'desc') { // 降序
+          if (array[j] > array[index]) {
+            index = j;
+          }
+        }
+      }
+      this.swap(array, i, index);
+    }
+  }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
 import { testSelectSort } from 'src/code/algorithms/sort';
 import selectSortImg from 'src/public/selectSort.png';
+import selectSortGif from 'src/public/selectSort.gif';
 
 const { Title, Paragraph } = Typography;
 
@@ -29,6 +30,10 @@ const Comp: React.FC = () => {
             <Title level={3}>选择排序图解</Title>
             <Paragraph>
               <img src={selectSortImg} alt="" />
+            </Paragraph>
+            <Title level={3}>选择排序动图解析</Title>
+            <Paragraph>
+              <img width="100%" src={selectSortGif} alt="" />
             </Paragraph>
           </Typography>
         </Collapse.Panel>

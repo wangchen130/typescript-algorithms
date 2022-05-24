@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
 import { testBubbleSort } from 'src/code/algorithms/sort';
 import bubbleSortImg from 'src/public/bubbleSort.png';
+import bubbleSortGif from 'src/public/bubbleSort.gif';
 
 const { Title, Paragraph } = Typography;
 
@@ -23,6 +24,10 @@ const Comp: React.FC = () => {
             <Title level={3}>冒泡排序图解</Title>
             <Paragraph>
               <img src={bubbleSortImg} alt="" />
+            </Paragraph>
+            <Title level={3}>冒泡排序动图解析</Title>
+            <Paragraph>
+              <img width="100%" src={bubbleSortGif} alt="" />
             </Paragraph>
           </Typography>
         </Collapse.Panel>

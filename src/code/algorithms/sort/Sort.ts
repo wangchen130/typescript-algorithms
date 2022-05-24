@@ -64,20 +64,21 @@ export default class Sort {
   public static insertSort<T>(array: T[], sortType: 'asc' | 'desc' = 'asc') {
     const len = array.length;
     if (len < 2) return;
-    for (let i = 0; i < len; i++) {
-      let index = i;
-      for (let j = index + 1; j < len; j++) {
-        if (sortType === 'asc') { // 升序
-          if (array[j] < array[index]) {
-            index = j;
-          }
-        } else if (sortType === 'desc') { // 降序
-          if (array[j] > array[index]) {
-            index = j;
-          }
+    for (let i = 1; i < len; i++) {
+      const insertVal = array[i];
+      let insertIndex = i;
+      if (sortType === 'asc') { // 升序
+        while (insertVal < array[insertIndex - 1] && insertIndex > 0) {
+          array[insertIndex] = array[insertIndex - 1];
+          insertIndex--;
+        }
+      } else if (sortType === 'desc') { // 降序
+        while (insertVal > array[insertIndex - 1] && insertIndex > 0) {
+          array[insertIndex] = array[insertIndex - 1];
+          insertIndex--;
         }
       }
-      this.swap(array, i, index);
+      array[insertIndex] = insertVal;
     }
   }
 }

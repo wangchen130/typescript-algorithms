@@ -60,6 +60,11 @@ const menuTreeOrigin = [
         name: '选择排序',
         route: '/algorithms/selectSort',
       },
+      {
+        id: 'insertSort',
+        name: '插入排序',
+        route: '/algorithms/insertSort',
+      },
     ]
   },
   {

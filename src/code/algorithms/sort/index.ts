@@ -50,3 +50,17 @@ export const testInsertSort = () => {
   Sort.insertSort<number>(arr, 'desc');
   console.log(arr.join(' '));
 };
+
+export const testShellSort = () => {
+  console.log('====================希尔排序测试开始=============');
+  let arr = getNumArr(20, 300);
+  console.log(arr.join(' '));
+  // 升序
+  console.log('====================升序排序=============');
+  Sort.shellSort<number>(arr);
+  console.log(arr.join(' '));
+  // 降序
+  console.log('====================降序排序=============');
+  Sort.shellSort<number>(arr, 'desc');
+  console.log(arr.join(' '));
+};

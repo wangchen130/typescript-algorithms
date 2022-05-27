@@ -65,6 +65,16 @@ const menuTreeOrigin = [
         name: '插入排序',
         route: '/algorithms/insertSort',
       },
+      {
+        id: 'shellSort',
+        name: '希尔排序',
+        route: '/algorithms/shellSort',
+      },
+      {
+        id: 'quickSort',
+        name: '快速排序',
+        route: '/algorithms/quickSort',
+      },
     ]
   },
   {

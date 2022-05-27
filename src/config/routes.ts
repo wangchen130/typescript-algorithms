@@ -53,6 +53,14 @@ const adminRoutes: RouteItemType[] = [
         component: () => import('src/pages/algorithms/sort/insertSort'),
       },
       {
+        path: '/shellSort',
+        component: () => import('src/pages/algorithms/sort/shellSort'),
+      },
+      {
+        path: '/quickSort',
+        component: () => import('src/pages/algorithms/sort/quickSort'),
+      },
+      {
         path: '/josepfuQuestion',
         component: () => import('src/pages/algorithms/josepfuQuestion'),
       },

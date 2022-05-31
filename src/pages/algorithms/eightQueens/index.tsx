@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
+import { solveEightQueensQuestion } from 'src/code/algorithms/eightQueens';
 import eightQueensQuestionIntroduceImg from 'src/public/eightQueensQuestionIntroduce.png';
 
 const { Title, Paragraph } = Typography;
@@ -9,7 +10,8 @@ const Comp: React.FC = () => {
     <>
       <Collapse defaultActiveKey={1}>
         <Collapse.Panel key={1} header="测试代码">
-          <Button style={{ marginRight: 10 }}>运行</Button>
+          <Button style={{ marginRight: 10 }} onClick={() => solveEightQueensQuestion(8)}>八皇后</Button>
+          <Button style={{ marginRight: 10 }} onClick={() => solveEightQueensQuestion(10)}>十皇后</Button>
         </Collapse.Panel>
         <Collapse.Panel key={2} header="八皇后问题">
           <Typography>

@@ -39,7 +39,7 @@ export default class NQueens {
       return;
     }
     // 依次放入皇后，并判断是否冲突
-    for (let i = 0; i < queenNum; i++) {
+    for (let i = 0; i < queenNum; i++) { // i表示列，即第n个皇后所在的纵坐标
       // 先把当前这个皇后放到该行的第1列, n表示皇后坐在的行
       this.positionArray[n] = i;
       // 判断当把第n个皇后放置到i列时，是否冲突

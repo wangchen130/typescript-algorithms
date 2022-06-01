@@ -122,4 +122,55 @@ export default class Sort {
       }
     }
   }
+
+  public static quickSort<T>(array: T[], sortType: 'asc' | 'desc' = 'asc') {
+    const len = array.length;
+    // 如果数组长度小于2，即只有一个元素或者为空数组，则无需进行排序
+    if (len < 2) return;
+    this.quick<T>(array, 0, len - 1, sortType);
+  }
+
+  private static quick<T>(array: T[], left: number, right: number, sortType: 'asc' | 'desc' = 'asc') {
+    if (left >= right) return;
+    let l = left;
+    let r = right - 1;
+    // 找到数组中间的位置
+    let middle = Math.floor((left + right) / 2);
+    // 将中间位置的元素与最后一个进行交换
+    this.swap(array, middle, right);
+    while (l < r) {
+      if (sortType === 'asc') { // 升序
+        // 从数组的左边开始，如果值小于最右边的值，即继续向后找，直到找到一个比最右边的值大的值，退出循环
+        while (array[l] < array[right]) {
+          l++;
+        }
+        while (array[r] > array[right]) {
+          r--;
+        }
+      } else { // 降序
+        while (array[l] > array[right]) {
+          l++;
+        }
+        while (array[r] < array[right]) {
+          r--;
+        }
+      }
+      // 此时，找到了正确的位置，然后将l和r交换
+      if (l < r) {
+        this.swap(array, l, r);
+      } else {
+        break;
+      }
+    }
+    // 以升序举个栗子：退出循环时，array[l]是大于 array[right] 的，同时所有比 array[right] 小的值都在l的左边，
+    // 所有比 array[right] 大的值都在l的右边，这时只需要交换l和right，就将数组分成两部分，所有比array[l]大的都在l的右边。
+    // 所有比 array[l] 小的都在l的左边，则l就找到了自己正确的位置，就不需要再动，这时只要分别想l的左边和l的右边进行递归，就能完成排序
+    this.swap(array, l, right);
+    // 向l的左边进行递归
+    // 注意，此时l已经是正确的位置了，所以这时传递的right值是 l -1 ，因为我们需要将中间的数与传递的right进行交换
+    this.quick(array, left, l - 1, sortType);
+    // 向l的右边边进行递归
+    this.quick(array, l + 1, right, sortType);
+  }
+
 }

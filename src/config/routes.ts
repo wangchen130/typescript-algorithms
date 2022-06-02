@@ -38,7 +38,7 @@ const adminRoutes: RouteItemType[] = [
     ],
   },
   {
-    path: '/algorithms',
+    path: '/sortAlgorithms',
     childRoutes: [
       {
         path: '/bubbleSort',
@@ -60,6 +60,15 @@ const adminRoutes: RouteItemType[] = [
         path: '/quickSort',
         component: () => import('src/pages/algorithms/sort/quickSort'),
       },
+      {
+        path: '/mergeSort',
+        component: () => import('src/pages/algorithms/sort/mergeSort'),
+      }
+    ],
+  },
+  {
+    path: '/otherAlgorithms',
+    childRoutes: [
       {
         path: '/josepfuQuestion',
         component: () => import('src/pages/algorithms/josepfuQuestion'),

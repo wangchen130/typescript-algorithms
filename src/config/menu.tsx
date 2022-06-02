@@ -53,27 +53,32 @@ const menuTreeOrigin = [
       {
         id: 'bubbleSort',
         name: '冒泡排序',
-        route: '/algorithms/bubbleSort',
+        route: '/sortAlgorithms/bubbleSort',
       },
       {
         id: 'selectSort',
         name: '选择排序',
-        route: '/algorithms/selectSort',
+        route: '/sortAlgorithms/selectSort',
       },
       {
         id: 'insertSort',
         name: '插入排序',
-        route: '/algorithms/insertSort',
+        route: '/sortAlgorithms/insertSort',
       },
       {
         id: 'shellSort',
         name: '希尔排序',
-        route: '/algorithms/shellSort',
+        route: '/sortAlgorithms/shellSort',
       },
       {
         id: 'quickSort',
         name: '快速排序',
-        route: '/algorithms/quickSort',
+        route: '/sortAlgorithms/quickSort',
+      },
+      {
+        id: 'mergeSort',
+        name: '归并排序',
+        route: '/sortAlgorithms/mergeSort',
       },
     ]
   },
@@ -84,17 +89,17 @@ const menuTreeOrigin = [
       {
         id: 'josepfuQuestion',
         name: '约瑟夫问题',
-        route: '/algorithms/josepfuQuestion',
+        route: '/otherAlgorithms/josepfuQuestion',
       },
       {
         id: 'mazeQuestion',
         name: '迷宫问题',
-        route: '/algorithms/mazeQuestion',
+        route: '/otherAlgorithms/mazeQuestion',
       },
       {
         id: 'eightQueens',
         name: '八皇后问题',
-        route: '/algorithms/eightQueens',
+        route: '/otherAlgorithms/eightQueens',
       },
     ]
   },

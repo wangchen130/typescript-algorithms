@@ -53,3 +53,24 @@ npm run eslint
 // 手动修复
 npm run eslint:fix
 ```
+## 项目运行部分效果展示
+
+### 单链表
+
+![linkedList](./src/public/docImg/linkedList.png)
+
+### 双向链表
+
+![doublyLinkedList](./src/public/docImg/doublyLinkedList.png)
+
+### 快速排序
+
+![quickSort](./src/public/docImg/quickSort.png)
+
+### 归并排序
+
+![mergeSort](./src/public/docImg/mergeSort.png)
+
+### 二分查找
+
+![binarySearch](./src/public/docImg/binarySearch.png)

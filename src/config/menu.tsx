@@ -88,6 +88,17 @@ const menuTreeOrigin = [
     ]
   },
   {
+    id: 'searchAlgorithms',
+    name: '排序算法',
+    children: [
+      {
+        id: 'binarySearch',
+        name: '二分查找',
+        route: '/searchAlgorithms/binarySearch',
+      },
+    ]
+  },
+  {
     id: 'otherAlgorithms',
     name: '其他算法',
     children: [

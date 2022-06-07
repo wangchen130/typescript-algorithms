@@ -71,6 +71,15 @@ const adminRoutes: RouteItemType[] = [
     ],
   },
   {
+    path: '/searchAlgorithms',
+    childRoutes: [
+      {
+        path: '/binarySearch',
+        component: () => import('src/pages/algorithms/search/binarySearch'),
+      },
+    ],
+  },
+  {
     path: '/otherAlgorithms',
     childRoutes: [
       {

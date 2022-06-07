@@ -80,6 +80,11 @@ const menuTreeOrigin = [
         name: '归并排序',
         route: '/sortAlgorithms/mergeSort',
       },
+      {
+        id: 'radixSort',
+        name: '基数排序',
+        route: '/sortAlgorithms/radixSort',
+      },
     ]
   },
   {

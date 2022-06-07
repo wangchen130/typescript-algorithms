@@ -63,7 +63,11 @@ const adminRoutes: RouteItemType[] = [
       {
         path: '/mergeSort',
         component: () => import('src/pages/algorithms/sort/mergeSort'),
-      }
+      },
+      {
+        path: '/radixSort',
+        component: () => import('src/pages/algorithms/sort/radixSort'),
+      },
     ],
   },
   {

@@ -23,6 +23,15 @@ export default class Sort {
   }
 
   /**
+   * 获取一个数的各位上的数字
+   * @param num 需要获取位数数字的数
+   * @param digitType 个位传0，十位传1，百位传2，千位传3，依次类推
+   */
+  public static getNumDigit(num: number, digitType: number): number {
+    return Math.floor(num / 10 ** digitType) % 10;
+  }
+
+  /**
    * 冒泡排序
    * @param array 需要排序的数组
    * @param sortType 排序类型，asc： 升序。desc： 降序。
@@ -206,6 +215,15 @@ export default class Sort {
     this.splitAndMerge(array, 0, len - 1, tempArr, sortType);
   }
 
+  /**
+   * 递归拆分数组并合并
+   * @param array 需要排序的数组
+   * @param left 左边下标
+   * @param right 右边下标
+   * @param tempArr 临时数组
+   * @param sortType 排序方式
+   * @private
+   */
   private static splitAndMerge<T>(array: T[], left: number, right: number, tempArr: T[], sortType: TSortType) {
     if (left < right) {
       const mid = Math.floor((left + right) / 2);
@@ -218,6 +236,16 @@ export default class Sort {
     }
   }
 
+  /**
+   * 合并数组，即将拆分后的序列合并为一个有序序列
+   * @param array 需要排序的数组
+   * @param left 左边序列的左下标
+   * @param mid 左边序列的右下标，则 mid + 1 就为右边序列的左下标
+   * @param right 右边序列的右下标，同时也是本次合并的右下标，即合并到 right 时就合并完毕
+   * @param tempArr 临时数组
+   * @param sortType 排序方式
+   * @private
+   */
   private static merge<T>(array: T[], left: number, mid: number, right: number, tempArr: T[], sortType: TSortType) {
     let leftListLeft = left; // 左序列的左下标，即左边序列的开始下标
     let rightListLeft = mid + 1; // 右序列的左下标，即右边序列的开始下标
@@ -291,6 +319,72 @@ export default class Sort {
     // for (let i = 0; i < tempArrIndex; i++, tempLeft++) {
     //   array[tempLeft] = tempArr[i];
     // }
+  }
+
+  /**
+   * 基数排序
+   * @param array 需要排序的数组
+   * @param sortType 排序类型，asc： 升序。desc： 降序。
+   */
+  public static radixSort(array: number[], sortType: TSortType = ASC) {
+    // 桶的长度
+    const bucketLength = 10;
+    // 找到数组中的最大值,首先假定数组的第一个就是最大值
+    let maxNum = array[0];
+    const len = array.length;
+    for (let i = 1; i < len; i++) {
+      if (array[i] > maxNum) { // 如果找到一个值比假定的最大值好要大的值，那么就将最大值设置为该值
+        maxNum = array[i];
+      }
+    }
+    // 数组中最大数有多少位，因为是按个位、十位、百位、千位来排的，所以最大数的位数就是外层循环的次数。
+    const maxLength = Number(maxNum).toString().length;
+    // 定义10个桶，即为一个长度为10的二维数组
+    const bucket = new Array<number[]>(bucketLength);
+    for (let i = 0; i < bucketLength; i++) {
+      bucket[i] = [];
+    }
+    // 分别根据个位、十位、百位、千位。。。来排序，调用 this.getNumDigit 方法传入 i 即可获得数位的值
+    for (let i = 0; i < maxLength; i++) {
+      for (let j = 0; j < len; j++) {
+        const arrayItem = array[j];
+        // 得到每一数位的值
+        const digitOfItem = this.getNumDigit(arrayItem, i);
+        // 将值装入对应的桶中，例如：当前的值 arrayItem 为 53，个位为3，则 digitOfItem 等于3，bucket[digitOfItem] 为 bucket[3]，
+        // 就将 53 push 到 bucket[3] 这个桶中
+        bucket[digitOfItem].push(arrayItem);
+      }
+      // 这时所有的数到装入来对应的桶中，这时就需要根据排序方式取出桶中的数据再放入到 array 中。
+      // 升序排序需要按照队列的规则取出，即先进先出，且是遍历 bucket 是从前向后遍历
+      // 降序排序需要按照栈的规则取出，即先进后出，且是遍历 bucket 是从后向前遍历，只需要在最后一次取出数据时从 bucket 的后面往前遍历就行，
+      // 因为这时桶中的数据经过前面的排序，从前向后遍历取出就是升序，则反向就为降序
+      let index = 0;
+      if (i < maxLength - 1 || sortType === ASC) { // 升序
+        for (let k = 0; k < bucketLength; k++) {
+          // 每一个对应的桶
+          let bucketItem = bucket[k];
+          const bucketItemLen = bucketItem.length;
+          if (bucketItemLen > 0) {
+            for (let z = 0; z < bucketItemLen; z++) {
+              // 升序排列，使用 shift() 从头部删除元素
+              array[index++] = bucketItem.shift();
+            }
+          }
+        }
+      } else { // 降序
+        for (let k = bucketLength - 1; k >= 0; k--) {
+          // 每一个对应的桶
+          let bucketItem = bucket[k];
+          const bucketItemLen = bucketItem.length;
+          if (bucketItemLen > 0) {
+            for (let z = 0; z < bucketItemLen; z++) {
+              // 降序排列，使用 pop() 从尾部删除元素
+              array[index++] = bucketItem.pop();
+            }
+          }
+        }
+      }
+    }
   }
 
 }

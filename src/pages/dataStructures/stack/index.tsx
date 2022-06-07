@@ -59,7 +59,7 @@ const Comp: React.FC = () => {
           </Typography>
         </Collapse.Panel>
         <Collapse.Panel key={3} header="栈实现计算器">
-          <img src={stackToCalculator} alt="" />
+          <img width="100%" src={stackToCalculator} alt="" />
         </Collapse.Panel>
       </Collapse>
     </>

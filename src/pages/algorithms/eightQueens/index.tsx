@@ -17,7 +17,7 @@ const Comp: React.FC = () => {
           <Typography>
             <Title level={3}>八皇后问题介绍</Title>
             <Paragraph>
-              <img src={eightQueensQuestionIntroduceImg} alt="" />
+              <img width="100%" src={eightQueensQuestionIntroduceImg} alt="" />
             </Paragraph>
             <Title level={3}>八皇后问题算法思路分析</Title>
             <Paragraph>

@@ -107,6 +107,7 @@ export const testQuickSort = () => {
   Sort.shellSort<number>(arr2, 'desc');
   console.log(arr2.join(' '));
 };
+
 export const testMergeSort = () => {
   console.log('====================归并排序测试开始=============');
 
@@ -147,5 +148,48 @@ export const testMergeSort = () => {
   // 降序
   console.log('====================降序排序=============');
   Sort.mergeSort<number>(arr2, 'desc');
+  console.log(arr2.join(' '));
+};
+
+export const testRadixSort = () => {
+  console.log('====================基数排序测试开始=============');
+
+  // 20个2000以内的数
+  console.log('20个2000以内的数：');
+  let arr = getNumArr(20, 2000);
+  console.log(arr.join(' '));
+  // 升序
+  console.log('====================升序排序=============');
+  Sort.radixSort(arr);
+  console.log(arr.join(' '));
+  // 降序
+  console.log('====================降序排序=============');
+  Sort.radixSort(arr, 'desc');
+  console.log(arr.join(' '));
+
+  // 1个50以内的数
+  console.log('1个50以内的数：');
+  let arr1 = getNumArr(1, 50);
+  console.log(arr1.join(' '));
+  // 升序
+  console.log('====================升序排序=============');
+  Sort.radixSort(arr1);
+  console.log(arr1.join(' '));
+  // 降序
+  console.log('====================降序排序=============');
+  Sort.radixSort(arr1, 'desc');
+  console.log(arr1.join(' '));
+
+  // 2个400以内的数
+  console.log('2个400以内的数：');
+  let arr2 = getNumArr(2, 400);
+  console.log(arr2.join(' '));
+  // 升序
+  console.log('====================升序排序=============');
+  Sort.radixSort(arr2);
+  console.log(arr2.join(' '));
+  // 降序
+  console.log('====================降序排序=============');
+  Sort.radixSort(arr2, 'desc');
   console.log(arr2.join(' '));
 };

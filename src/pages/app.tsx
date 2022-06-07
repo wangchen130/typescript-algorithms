@@ -23,7 +23,7 @@ const App: React.FC<AppType & any> = ({
         <Header pathname={pathname} />
         <Layout>
           <Sider {...siderProps} />
-          <Layout>
+          <Layout style={{ overflow: 'auto' }}>
             <Layout.Content style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ flex: '1' }}>{ children }</div>
             </Layout.Content>

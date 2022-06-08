@@ -96,6 +96,11 @@ const menuTreeOrigin = [
         name: '二分查找',
         route: '/searchAlgorithms/binarySearch',
       },
+      {
+        id: 'insertValueSearch',
+        name: '插值查找',
+        route: '/searchAlgorithms/insertValueSearch',
+      },
     ]
   },
   {

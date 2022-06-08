@@ -9,6 +9,10 @@ export default class BinarySearch {
   public static binarySearch<T>(array: T[], findVal: T): number[] {
     const left = 0;
     const right = array.length - 1;
+    // 因为array为升序排列的数组，所以如果我们查找的值小于数组的最小值或者大于数组的最大值，则查找的值肯定不在数组中，即可直接返回
+    if (findVal < array[left] || findVal > array[right]) {
+      return [];
+    }
     return this.binarySearchRecursion<T>(array, left, right, findVal);
   }
 

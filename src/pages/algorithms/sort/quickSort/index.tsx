@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
 import { testQuickSort } from 'src/code/algorithms/sort';
-import quickSortImg from 'src/public/quickSort.png';
+import quickSortImg from 'src/public/quickSort.jpg';
 import quickSortGif from 'src/public/quickSort.gif';
 
 const { Title, Paragraph } = Typography;

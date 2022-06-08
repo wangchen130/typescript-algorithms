@@ -5,6 +5,7 @@ import { adminRoutes, RouteItemType } from 'src/config/routes';
 import dynamicRoute from 'src/components/dynamic-route';
 import ConfigProvider from 'src/components/config-provider';
 import 'src/themes/index.less';
+
 import App from 'src/pages/app';
 
 const { Redirect, Route, Switch } = router;

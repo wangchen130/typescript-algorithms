@@ -77,6 +77,10 @@ const adminRoutes: RouteItemType[] = [
         path: '/binarySearch',
         component: () => import('src/pages/algorithms/search/binarySearch'),
       },
+      {
+        path: '/insertValueSearch',
+        component: () => import('src/pages/algorithms/search/insertValueSearch'),
+      },
     ],
   },
   {

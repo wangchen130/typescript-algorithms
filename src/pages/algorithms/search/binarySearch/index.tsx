@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
-import { testBinarySearch } from 'src/code/algorithms/search/binarySearch';
+import { testBinarySearch } from 'src/code/algorithms/search';
 
 const { Title, Paragraph } = Typography;
 

@@ -44,6 +44,11 @@ const menuTreeOrigin = [
         name: '双向链表',
         route: '/dataStructures/doublyLinkedList',
       },
+      {
+        id: 'hashTable',
+        name: '哈希表',
+        route: '/dataStructures/hashTable',
+      },
     ],
   },
   {
@@ -100,6 +105,11 @@ const menuTreeOrigin = [
         id: 'insertValueSearch',
         name: '插值查找',
         route: '/searchAlgorithms/insertValueSearch',
+      },
+      {
+        id: 'fibonacciSearch',
+        name: '斐波那契查找',
+        route: '/searchAlgorithms/fibonacciSearch',
       },
     ]
   },

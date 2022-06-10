@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
-import { testInsertValueSearch } from 'src/code/algorithms/search/insertValueSearch';
+import { testInsertValueSearch } from 'src/code/algorithms/search';
 import insertValueSearchPrincipleIntroductionImg from 'src/public/insertValueSearchPrincipleIntroduction.png';
 import insertValueSearchExampleImg from 'src/public/insertValueSearchExample.png';
 

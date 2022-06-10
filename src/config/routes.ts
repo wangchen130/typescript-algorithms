@@ -35,6 +35,10 @@ const adminRoutes: RouteItemType[] = [
         path: '/doublyLinkedList',
         component: () => import('src/pages/dataStructures/doublyLinkedList'),
       },
+      {
+        path: '/hashTable',
+        component: () => import('src/pages/dataStructures/hashTable'),
+      },
     ],
   },
   {
@@ -80,6 +84,10 @@ const adminRoutes: RouteItemType[] = [
       {
         path: '/insertValueSearch',
         component: () => import('src/pages/algorithms/search/insertValueSearch'),
+      },
+      {
+        path: '/fibonacciSearch',
+        component: () => import('src/pages/algorithms/search/fibonacciSearch'),
       },
     ],
   },

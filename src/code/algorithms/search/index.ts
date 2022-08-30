@@ -74,7 +74,7 @@ export const testInsertValueSearch = () => {
 };
 
 export const testFibSearch = () => {
-  console.log('====================插值查找测试开始=============');
+  console.log('====================斐波那契查找测试开始=============');
   // 测试1
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11, 11, 11, 11, 11, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   console.log('待查找的数组为：', arr);
@@ -105,5 +105,8 @@ export const testFibSearch = () => {
   const findVal5 = 1;
   console.log('待查找的值为：', findVal5);
   console.log('查找结果为：', Search.fibSearch(arr2, findVal5));
+  const findVal6 = 133;
+  console.log('待查找的值 findVal6 为：', findVal6);
+  console.log('查找结果为：', Search.fibSearch(arr2, findVal6));
 
 };

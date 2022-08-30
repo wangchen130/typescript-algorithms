@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export default class Search {
   /**
    * 二分查找
@@ -7,9 +9,10 @@ export default class Search {
    */
   public static binarySearch<T>(array: T[], findVal: T): number[] {
     const left = 0;
-    const right = array.length - 1;
+    const arrayLen = array.length;
+    const right = arrayLen - 1;
     // 因为array为升序排列的数组，所以如果我们查找的值小于数组的最小值或者大于数组的最大值，则查找的值肯定不在数组中，即可直接返回
-    if (findVal < array[left] || findVal > array[right]) {
+    if (arrayLen === 0 || findVal < array[left] || findVal > array[right]) {
       return [];
     }
     return this.binarySearchRecursion<T>(array, left, right, findVal);
@@ -25,24 +28,32 @@ export default class Search {
    * @return number[] 需要查找的值在数组中的所有下标构成的数组
    */
   private static binarySearchRecursion<T>(array: T[], left: number, right: number, findVal: T): number[] {
+    // 定义存储查找结果下标的数据
     const resIndexList: number[] = [];
+    // 当 left > right时，说明查找的值不在当前数据中，则返回 resIndexList ，此时 resIndexList 为空，也可以返回空数组
     if (left > right) {
       return resIndexList;
     }
     const mid = Math.floor((left + right) / 2);
     const midVal = array[mid];
-    if (findVal < midVal) { // 需要查找的值小于 midVal，向左递归
+    // 需要查找的值小于 midVal，向左递归
+    if (findVal < midVal) {
       return this.binarySearchRecursion<T>(array, left, mid - 1, findVal);
     }
-    if (findVal > midVal) { // 需要查找的值大于 midVal ，向右递归
+    // 需要查找的值大于 midVal ，向右递归
+    if (findVal > midVal) {
       return this.binarySearchRecursion<T>(array, mid + 1, right, findVal);
     }
+    // 此时证明找到了值，且下标为 mid，则此时需要分别向mid的前面和后面进行查找，看是否还有值等于 findVal
+    // 向 array[mid] 的前面查找
     let tempIndex = mid - 1;
     while (tempIndex >= 0 && findVal === array[tempIndex]) {
       resIndexList.unshift(tempIndex);
       tempIndex--;
     }
+    // 将找到的下标mid添加到 resIndexList 中
     resIndexList.push(mid);
+    // 向 array[mid] 的后面查找
     tempIndex = mid + 1;
     while (tempIndex < array.length && findVal === array[tempIndex]) {
       resIndexList.push(tempIndex);
@@ -62,9 +73,10 @@ export default class Search {
    */
   public static insertValueSearch(array: number[], findVal: number): number[] {
     const left = 0;
-    const right = array.length - 1;
+    const arrayLen = array.length;
+    const right = arrayLen - 1;
     // 因为array为升序排列的数组，所以如果我们查找的值小于数组的最小值或者大于数组的最大值，则查找的值肯定不在数组中，即可直接返回
-    if (findVal < array[left] || findVal > array[right]) {
+    if (arrayLen === 0 || findVal < array[left] || findVal > array[right]) {
       return [];
     }
     return this.insertValueSearchRecursion(array, left, right, findVal);
@@ -112,19 +124,62 @@ export default class Search {
 
   /**
    * 斐波那契(黄金分割法)查找，供外部调用的
-   * 斐波那契查找的求中位数的公司为：mid = low + F(k-1) - 1
+   * 斐波那契查找的求中位数的公式为：mid = low + F(k-1) - 1
    * @param array 需要进行查找的数组，必须为升序排列的有序数组
    * @param findVal 需要查找的值
    * @return 需要查找的值在数组中的所有下标构成的数组
    */
   public static fibSearch(array: number[], findVal: number): number[] {
-    const low = 0;
-    const high = array.length - 1;
+    let low = 0;
+    const arrayLen = array.length;
+    let high = arrayLen - 1;
     const resIndexList: number[] = [];
     // 因为array为升序排列的数组，所以如果我们查找的值小于数组的最小值或者大于数组的最大值，则查找的值肯定不在数组中，即可直接返回
-    if (findVal < array[low] || findVal > array[high]) {
+    if (arrayLen === 0 || findVal < array[low] || findVal > array[high]) {
       return resIndexList;
     }
+    let k = 0;
+    let mid = 0;
+    let f = this.getFibList(k + 1);
+    while (high > f[k] - 1) {
+      k++;
+      f = this.getFibList(k + 1);
+    }
+    const tempArray = _.cloneDeep(array);
+    for (let i = 0; i < f[k] - arrayLen; i++) {
+      tempArray.push(array[high]);
+    }
+    while (low <= high) {
+      // 求出黄金分隔点
+      mid = low + f[k - 1] - 1;
+      if (findVal < tempArray[mid]) { // 查找的值小于 tempArray[mid]，向左进行查找
+        high = mid - 1;
+        k--;
+      } else if (findVal > tempArray[mid]) { // 查找的值大于 tempArray[mid]，向右进行查找
+        low = mid + 1;
+        k -= 2;
+      } else { // 找到，即 findVal === tempArray[mid]
+        // 因为 tempArray 可能对原数组进行了扩容，并且用 array 数组的最后一个值进行填充，所以可能会存在找到的mid大于 array 的最大下标
+        if (mid > arrayLen - 1) {
+          mid = arrayLen - 1;
+        }
+        // 向 tempArray[mid] 的前面查找
+        let tempIndex = mid - 1;
+        while (tempIndex >= 0 && findVal === tempArray[tempIndex]) {
+          resIndexList.unshift(tempIndex);
+          tempIndex--;
+        }
+        resIndexList.push(mid);
+        // 向 array[mid] 的后面查找
+        tempIndex = mid + 1;
+        while (tempIndex < arrayLen && findVal === tempArray[tempIndex]) {
+          resIndexList.push(tempIndex);
+          tempIndex++;
+        }
+        return resIndexList;
+      }
+    }
+
     return resIndexList;
   }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
-import { testRadixSort } from 'src/code/algorithms/sort';
+import { testFibSearch } from 'src/code/algorithms/search';
 import fibonacciSearchDiagramImg from 'src/public/fibonacciSearchDiagram.png';
 
 const { Title, Paragraph } = Typography;
@@ -10,7 +10,7 @@ const Comp: React.FC = () => {
     <>
       <Collapse defaultActiveKey={1}>
         <Collapse.Panel key={1} header="测试代码">
-          <Button style={{ marginRight: 10 }} onClick={testRadixSort}>运行</Button>
+          <Button style={{ marginRight: 10 }} onClick={testFibSearch}>运行</Button>
         </Collapse.Panel>
         <Collapse.Panel key={2} header="斐波那契(黄金分割法)查找算法">
           <Typography>

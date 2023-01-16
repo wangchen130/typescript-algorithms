@@ -49,6 +49,16 @@ const menuTreeOrigin = [
         name: '哈希表',
         route: '/dataStructures/hashTable',
       },
+      {
+        id: 'arrayBinaryTree',
+        name: '顺序存储二叉树',
+        route: '/dataStructures/arrayBinaryTree',
+      },
+      {
+        id: 'huffmanTree',
+        name: '赫夫曼树',
+        route: '/dataStructures/huffmanTree',
+      },
     ],
   },
   {
@@ -90,6 +100,11 @@ const menuTreeOrigin = [
         name: '基数排序',
         route: '/sortAlgorithms/radixSort',
       },
+      {
+        id: 'heapSort',
+        name: '堆排序',
+        route: '/sortAlgorithms/heapSort',
+      },
     ]
   },
   {
@@ -117,6 +132,11 @@ const menuTreeOrigin = [
     id: 'otherAlgorithms',
     name: '其他算法',
     children: [
+      {
+        id: 'huffmanCode',
+        name: '赫夫曼编码',
+        route: '/otherAlgorithms/huffmanCode',
+      },
       {
         id: 'josepfuQuestion',
         name: '约瑟夫问题',

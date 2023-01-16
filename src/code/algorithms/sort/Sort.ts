@@ -193,7 +193,7 @@ export default class Sort {
     }
     // 以升序举个栗子：退出循环时，array[l]是大于 array[right] 的，同时所有比 array[right] 小的值都在l的左边，
     // 所有比 array[right] 大的值都在l的右边，这时只需要交换l和right，就将数组分成两部分，所有比array[l]大的都在l的右边。
-    // 所有比 array[l] 小的都在l的左边，则l就找到了自己正确的位置，就不需要再动，这时只要分别想l的左边和l的右边进行递归，就能完成排序
+    // 所有比 array[l] 小的都在l的左边，则l就找到了自己正确的位置，就不需要再动，这时只要分别向l的左边和l的右边进行递归，就能完成排序
     this.swap(array, l, right);
     // 向l的左边进行递归
     // 注意，此时l已经是正确的位置了，所以这时传递的right值是 l -1 ，因为我们需要将中间的数与传递的right进行交换
@@ -387,4 +387,157 @@ export default class Sort {
     }
   }
 
+  // ===================================================堆排序================================================
+  /**
+   * 堆排序，堆排序为顺序存储二叉树的应用，顺序存储二叉树：使用数组存储数据，但是可以使用二叉树的前序、中序和后序等遍历方式进行遍历
+   * 并且，如果一个节点有子节点，那么一定必有左子节点，因为在顺序存储二叉树中，
+   * i 节点的左子节点在数组中的下标为 i * 2 + 1，右子节点在数组中的下标为 i * 2 + 2，即右子节点的下标等于左子节点的下标 +1，
+   * 因为数组是顺序存储的，所以必定先有左子节点
+   * @param array 需要排序的数组
+   * @param sortType 排序类型，asc： 升序。desc： 降序。
+   */
+  public static heapSort(array: number[], sortType: TSortType = ASC) {
+    if (sortType === ASC) {
+      this.heapSortAsc(array);
+    } else {
+      this.heapSortDesc(array);
+    }
+  }
+
+  /**
+   * 升序堆排序
+   * @param array 需要排序的数组
+   * @private
+   */
+  private static heapSortAsc(array: number[]) {
+    // 1. 传入的数据 array 为无序数组，所以需要将其调整为一个大顶堆
+    this.createBigHeap(array); // 调整完成后，array就为一个标准的大顶堆了
+    // 调整为一个大顶堆以后，根结点（即array[0]）的值就为整个array数组中最大的值，此时只需要将根结点与最后一个节点的值进行交换（即将array[array.length - 1]与array[0]交换）
+    // 进行交换之后，数组的最后一个元素，即array[array.length -1]就为整个数组中的最大值。然后将对最后一个元素前面的所有元素调整为大顶堆，
+    // 这时根结点（array[0]）又为前 array.length - 1 个元素的最大值，然后将 array[0] 与 array[array.length -2]进行交换，
+    // 如此循环，直到调整到第一个元素，完成排序
+    for (let i = array.length - 1; i > 0; i--) {
+      this.swap(array, 0, i);
+      // 因为 array 已经是一个调整好的大顶堆了，将 array[0] 与 array[i]交换以后，array[array.length - 1]为最大值，
+      // 然后 array[0] 到 array[array.length -2]之中，array[0]的位置不正确，这时需要将array[0]调整到正确的位置，
+      // 且待调整的数组的长度为 i
+      this.adjustBigHeap(array, 0, i);
+    }
+  }
+
+  /**
+   * 从下至上，从左至右将一个无序数组调整为一个大顶堆
+   * 对于一个顺序存储二叉树 array 来说，根结点在array中的下标为为 0 。一共有(array.length / 2 )个非叶子节点，即最后一个非叶子节点在数组array中下标为 array.length / 2 -1
+   * 从下至上，从左至右进行调整就是从最后一个非叶子节点调整到根结点。 即从下标array.length / 2 -1 开始，一直调整到下标为 0
+   * @param array 需要排序的数组
+   * @private
+   */
+  private static createBigHeap(array: number[]) {
+    const len = array.length;
+    // 注意：js中除法可能会得到小数，所以需要向下取整
+    for (let i = Math.floor(len / 2 - 1); i >= 0; i--) { // 从 array.length / 2 -1 循环到 0 （即从下标array.length / 2 -1 开始，一直调整到下标为 0）
+      this.adjustBigHeap(array, i, len);
+    }
+  }
+
+  /**
+   * 功能： 将以 i 为根结点的异常大顶堆【该大顶堆除了根结点 i 以为，其他节点都正常】调整为正常的大顶堆，即把根结点调整到正确的位置。
+   * 举例  array = [4, 6, 8, 5, 9]; => i = 1 => adjustBigHeap => 得到 [4, 9, 8, 5, 6]
+   * 如果我们再次调用  adjustBigHeap 传入的是 i = 0 时 [4, 9, 8, 5, 6] => [9,6,8,5, 4]
+   * @param array 待调整的数组
+   * @param i 表示非叶子结点在数组中索引
+   * @param len 表示对多少个元素继续调整， len 是在逐渐的减少
+   * @private
+   */
+  private static adjustBigHeap(array: number[], i: number, len: number) {
+    // 先取出当前元素的值，保存为一个临时变量
+    const temp = array[i];
+    // 开始将以 temp 为根结点的非叶子节点的树调整为大顶堆
+    // k = i * 2 + 1，即 k 为 i 的左子节点，那么 k + 1 就为 i 的右子节点。为何需要找 i 的左子节点？？？？因为顺序存储二叉树如果有子节点，
+    // 必定有左子节点，不一定有右子节点，所以需要找当前节点的左子节点，找到左子节点后，左子节点的下标加 1 ，如果未超出数组长度，则就得到了右子节点
+    for (let k = i * 2 + 1; k < len; k = k * 2 + 1) { // k >= len 时退出循环，此时表明 i 没有子节点
+      // k + 1 < len：表示 i 有右子节点。
+      // array[k] < array[k + 1]：表示右子节点大于左子节点。因为是要构建大顶堆，需要保证父节点大于左右子节点
+      // 则就需要比较左右子节点的大小，将 k 指向较大的一个子节点。目前 k 指向左子节点，k + 1 指向右子节点，如果右子节点大于了左子节点，
+      // 就需要让 k 指向右子节点，即 k = k + 1
+      if (k + 1 < len && array[k] < array[k + 1]) {
+        k += 1;
+      }
+      // 此时，k 指向了左右子节点中较大的那个子节点，这时只需要将 k 节点与位置错误的 temp 节点进行比较，如果 k节点 大于了 temp 节点，
+      // 则证明temp节点应该是 k 节点的子节点或者子树中的节点，则需要将 k 节点往上提。因为 i 节点始终是 k 节点的父节点，要想将 k 节点往上提，
+      // 只需要将 k 节点赋值给 i 节点就行。第一进行循环是，i 为根结点，又用temp保存了 i 节点，所以可以直接赋值，不用担心 i 节点的值会丢
+      if (array[k] > temp) {
+        array[i] = array[k]; // 将 k 节点赋值给 i 节点，即将 k 节点往上提。因为 i 节点在最开始已经取出来用temp进行了保存，所以可以直接赋值
+        // 因为 k 节点的值已经赋值给了 i 节点，所以此时 k 节点已经找到正确的位置了。因为整棵树只有 temp 节点不在正确的位置，此时只判断了 k 节点大于 temp 节点，
+        // 还没有判断 k 节点的子树中的节点是否大于 temp 节点，所以需要将 k 节点赋值给 i 节点，然后继续循环比较，
+        // 直到找到 array[k] < temp【即temp为 k 的父节点】或者超出数组长度退出循环
+        i = k;
+      } else {
+        // 因为整个大顶堆只有 temp 节点不在正确的位置，此时 array[k] < temp ，i 又为 k 的父节点，则 i 就为 temp 正确的位置，此时可以直接退出循环
+        break;
+      }
+    }
+    // 退出循环时有两种情况：
+    // 1. array[k] < temp ，即temp的正确位置为 k 的父节点，且 i 始终为 k 的父节点，所以将temp赋值给 k 节点就行。
+    // 2. 超出数组长度退出循环，即 i 没有子节点，则 i 就为temp的正确位置
+    array[i] = temp;
+  }
+
+  /**
+   * 降序堆排序
+   * @param array 需要排序的数组
+   * @private
+   */
+  private static heapSortDesc(array: number[]) {
+    // 1. 将传入的无序数组array调整为一个小顶堆
+    this.createSmallHeap(array);
+    // 2. 构建为一个小顶堆之后，将第一个元素和最后一个元素交换，然后对前面的 n - 1个元素继续调整交换
+    for (let i = array.length - 1; i > 0; i--) {
+      this.swap(array, 0, i);
+      this.adjustSmallHeap(array, 0, i);
+    }
+  }
+
+  /**
+   * 从下至上，从左至右将无序数组array调整为一个小顶堆
+   * @param array 需要排序的数组
+   * @private
+   */
+  private static createSmallHeap(array: number[]) {
+    const len = array.length;
+    // 最后一个非叶子节点的下标为 array.length / 2 - 1,则需要从下标 array.length / 2 - 1 调整到下标 0
+    for (let i = Math.floor(len / 2 - 1); i >= 0; i--) {
+      this.adjustSmallHeap(array, i, len);
+    }
+  }
+
+  /**
+   * 功能：以下标为i的元素作为根结点，且在该大顶堆中，只有 i 节点的位置不正确。将这棵树调整为小顶堆
+   * @param array 待调整的数组
+   * @param i 根结点在数组中的索引
+   * @param len 表示对多少个元素进行调整
+   * @private
+   */
+  private static adjustSmallHeap(array: number[], i: number, len: number) {
+    // 取出位置不正确的的根结点i，等到调整结束后，将其放到正确的位置
+    const temp = array[i];
+    // 从 i 节点的左子节点(即下标为 i * 2 + 1)开始
+    for (let k = i * 2 + 1; k < len; k = k * 2 + 1) { // k = k * 2 + 1: 始终从左子节点开始找
+      if (k + 1 < len && array[k] > array[k + 1]) {
+        // array[k] > array[k + 1] 表明 i 的左子节点大于右子节点，这时右子节点比较小，构建小顶堆需要找较小的节点，所以需要将 k 指向右子节点
+        k += 1;
+      }
+      // 此时 k 指向较小的子节点，如果 array[k] < temp, 因为此时temp为array[k]的父节点或祖先节点，
+      // 即temp在array[k]的上面，小顶堆是上面的元素小于下面的元素，下面的array[k]都比temp小了，则需要将array[k]往上提
+      if (array[k] < temp) {
+        array[i] = array[k];
+        // k 已经往上提了，此时需要将 i 指向 k ，再次进入循环继续向下寻找temp的正确位置
+        i = k;
+      } else {
+        break;
+      }
+    }
+    // 退出循环之后，i 指向的位置就是 temp的正确位置
+    array[i] = temp;
+  }
 }

@@ -10,7 +10,7 @@ const chalk = require('chalk');
 const compiler = webpack(webpackConfig);
 
 const host = 'localhost';
-const port = 8080;
+const port = 8888;
 const devServerOptions = {
   quiet: true,
   noInfo: true,

@@ -39,6 +39,14 @@ const adminRoutes: RouteItemType[] = [
         path: '/hashTable',
         component: () => import('src/pages/dataStructures/hashTable'),
       },
+      {
+        path: '/arrayBinaryTree',
+        component: () => import('src/pages/dataStructures/tree/arrayBinaryTree'),
+      },
+      {
+        path: '/huffmanTree',
+        component: () => import('src/pages/dataStructures/tree/huffmanTree'),
+      },
     ],
   },
   {
@@ -71,6 +79,10 @@ const adminRoutes: RouteItemType[] = [
       {
         path: '/radixSort',
         component: () => import('src/pages/algorithms/sort/radixSort'),
+      },
+      {
+        path: '/heapSort',
+        component: () => import('src/pages/algorithms/sort/heapSort'),
       },
     ],
   },
@@ -105,6 +117,10 @@ const adminRoutes: RouteItemType[] = [
       {
         path: '/eightQueens',
         component: () => import('src/pages/algorithms/eightQueens'),
+      },
+      {
+        path: '/huffmanCode',
+        component: () => import('src/pages/algorithms/huffmanCode'),
       },
     ],
   },

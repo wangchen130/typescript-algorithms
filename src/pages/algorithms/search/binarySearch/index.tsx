@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
-import { testBinarySearch } from 'src/code/algorithms/search';
+import { testBinarySearch, testBinarySearchNoRecursion } from 'src/code/algorithms/search';
 
 const { Title, Paragraph } = Typography;
 
@@ -9,7 +9,8 @@ const Comp: React.FC = () => {
     <>
       <Collapse defaultActiveKey={1}>
         <Collapse.Panel key={1} header="测试代码">
-          <Button style={{ marginRight: 10 }} onClick={testBinarySearch}>运行</Button>
+          <Button style={{ marginRight: 10 }} onClick={testBinarySearch}>递归实现</Button>
+          <Button style={{ marginRight: 10 }} onClick={testBinarySearchNoRecursion}>非递归实现</Button>
         </Collapse.Panel>
         <Collapse.Panel key={2} header="二分查找">
           <Typography>

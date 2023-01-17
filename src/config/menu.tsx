@@ -152,6 +152,16 @@ const menuTreeOrigin = [
         name: '八皇后问题',
         route: '/otherAlgorithms/eightQueens',
       },
+      {
+        id: 'divideAndConquerAlgorithm',
+        name: '分治算法',
+        route: '/otherAlgorithms/divideAndConquerAlgorithm',
+      },
+      {
+        id: 'dynamicProgramming',
+        name: '动态规划算法',
+        route: '/otherAlgorithms/dynamicProgramming',
+      },
     ]
   },
 ];

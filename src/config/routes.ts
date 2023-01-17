@@ -122,6 +122,14 @@ const adminRoutes: RouteItemType[] = [
         path: '/huffmanCode',
         component: () => import('src/pages/algorithms/huffmanCode'),
       },
+      {
+        path: '/divideAndConquerAlgorithm',
+        component: () => import('src/pages/algorithms/divideAndConquerAlgorithm'),
+      },
+      {
+        path: '/dynamicProgramming',
+        component: () => import('src/pages/algorithms/dynamicProgramming'),
+      },
     ],
   },
 ];

@@ -63,6 +63,53 @@ export default class Search {
   }
 
   /**
+   * @description 非递归的方式实现二分查找
+   * @param array 需要进行查找的数组，必须为升序排列的有序数组
+   * @param findVal 需要查找的值
+   * @return number[] 需要查找的值在数组中的所有下标构成的数组
+   */
+  public static binarySearchNoRecursion<T>(array: T[], findVal: T): number[] {
+    // 定义存储查找结果下标的数据
+    const resIndexList: number[] = [];
+    // 左下标
+    let left = 0;
+    // 右下标
+    let right = array.length - 1;
+    // 因为使用非递归的方式，所以需要不停地改变left 和 right 的值，只要left还小于或等于right，则就可以继续查找
+    while (left <= right) {
+      // 得到中点位置的坐标
+      const mid = Math.floor((left + right) / 2);
+      // 找到了查找的值在数组中位置
+      if (findVal === array[mid]) {
+        resIndexList.push(mid);
+        // 定义一个临时的下标，用于向 mid 的左右两边继续查找是否还有与需要查找的findVal相等的值,先向 mid 的左边查找，再向 mid 的右边查找
+        // 向左查找
+        let tempIndex = mid - 1;
+        while (array[tempIndex] === findVal && tempIndex >= 0) { // tempIndex为数组下标，所以不能小于0
+          resIndexList.unshift(tempIndex);
+          // 将 tempIndex 减 1，继续向左查找
+          tempIndex--; // ！！！！一定要改变 tempIndex 的值，否则会陷入死循环
+        }
+        // 向右查找
+        tempIndex = mid + 1;
+        while (array[tempIndex] === findVal && tempIndex <= array.length - 1) { // tempIndex为数组下标，所以不能大于数组长度
+          resIndexList.push(tempIndex);
+          // 将 tempIndex 加 1，继续向右查找
+          tempIndex++; // ！！！！一定要改变 tempIndex 的值，否则会陷入死循环
+        }
+        // 得到所有的位置坐标后，结束循环
+        break;
+      } else if (findVal < array[mid]) { // 如果查找的值小于中点的值，则证明查找的值在中点的左边，所以需要继续向左查找，这时需要让right = mid - 1
+        right = mid - 1;
+      } else { // 这时查找的值大于中点的值，则证明查找的值在中点的右边，所以需要继续向左查找，这时需要让left = mid + 1
+        left = mid + 1;
+      }
+    }
+
+    return resIndexList;
+  }
+
+  /**
    * 插值查找，供外部调用的
    * 插值查找为二分查找的改进版，对于中位数的取值有了一定的优化，对于连续分布的有序序列查找效率有所提高
    * 插值查找求中位数的公式为：

@@ -11,7 +11,7 @@ interface SiderProps {
 
 const Sider: React.FC<SiderProps> = ({ pathname, prepend, append }) => {
   return (
-    <Layout.Sider width={200}>
+    <Layout.Sider width={200} style={{ overflow: 'auto' }}>
       {prepend}
       <Menu
         mode="inline"

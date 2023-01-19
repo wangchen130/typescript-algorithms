@@ -15,7 +15,7 @@ const Comp: React.FC = () => {
     <>
       <Collapse defaultActiveKey={[1, 2]}>
         <Collapse.Panel key={1} header="测试代码">
-          <Button style={{ marginRight: 10 }} onClick={testHanoiTower}>运行</Button>
+          <Button style={{ marginRight: 10 }} onClick={testHanoiTower}>汉诺塔</Button>
         </Collapse.Panel>
         <Collapse.Panel key={2} header="动态规划算法介绍">
           <Typography>

@@ -47,6 +47,10 @@ const adminRoutes: RouteItemType[] = [
         path: '/huffmanTree',
         component: () => import('src/pages/dataStructures/tree/huffmanTree'),
       },
+      {
+        path: '/graph',
+        component: () => import('src/pages/dataStructures/graph'),
+      },
     ],
   },
   {

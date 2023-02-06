@@ -59,6 +59,11 @@ const menuTreeOrigin = [
         name: '赫夫曼树',
         route: '/dataStructures/huffmanTree',
       },
+      {
+        id: 'graph',
+        name: '图',
+        route: '/dataStructures/graph',
+      },
     ],
   },
   {

@@ -251,27 +251,43 @@ export class BinarySearchTree<T> {
     if (current) {
       // 没有左子节点也没有右子节点，即为叶子节点
       if (!current.left && !current.right) {
-        if (isLeft) { // 删除节点为 parent 的左子节点
-          // 则只需要将parent的left置为空即可
-          parent.left = null;
-        } else { // 删除节点为 parent 的右子节点
-          parent.right = null;
+        if (current === this.root) { // 待删除的节点为根结点
+          // 直接删除根结点
+          this.root = null;
+        } else {
+          if (isLeft) { // 删除节点为 parent 的左子节点
+            // 则只需要将parent的left置为空即可
+            parent.left = null;
+          } else { // 删除节点为 parent 的右子节点
+            parent.right = null;
+          }
         }
       } else if (!current.left) { // 没有左子节点，即只有一个右子节点
-        if (isLeft) { // 删除节点为 parent 的左子节点
-          // 因为current只有一个右子节点，同时current为parent的左子节点，这时只需要将parent的左子节点指向current的右子节点即可
-          parent.left = current.right;
-        } else { // 删除节点为 parent 的右子节点
-          // 因为current只有一个右子节点，同时current为parent的右子节点，这时只需要将parent的右子节点指向current的右子节点即可删除current
-          parent.right = current.right;
+        if (current === this.root) { // 待删除的节点为根结点
+          // 根结点指向根结点的右子节点，则原来的根结点就被删除了
+          this.root = current.right;
+        } else {
+          if (isLeft) { // 删除节点为 parent 的左子节点
+            // 因为current只有一个右子节点，同时current为parent的左子节点，这时只需要将parent的左子节点指向current的右子节点即可
+            parent.left = current.right;
+          } else { // 删除节点为 parent 的右子节点
+            // 因为current只有一个右子节点，同时current为parent的右子节点，这时只需要将parent的右子节点指向current的右子节点即可删除current
+            parent.right = current.right;
+          }
         }
+
       } else if (!current.right) { // current没有右子节点，即只有一个左子节点
-        if (isLeft) { // 删除节点为 parent 的左子节点
-          // 因为current为parent的左子节点，同时current只有一个左子节点，这时只需要将parent的左子节点指向current的左子节点即可
-          parent.left = current.left;
-        } else { // 删除节点为 parent 的右子节点
-          // 因为current为parent的右子节点，同时current只有一个左子节点，这时只需要将parent的右子节点指向current的左子节点即可
-          parent.right = current.left;
+        if (current === this.root) { // 待删除的节点为根结点
+          // 根结点指向根结点的左子节点，则原来的根结点就被删除了
+          this.root = current.left;
+        } else {
+          if (isLeft) { // 删除节点为 parent 的左子节点
+            // 因为current为parent的左子节点，同时current只有一个左子节点，这时只需要将parent的左子节点指向current的左子节点即可
+            parent.left = current.left;
+          } else { // 删除节点为 parent 的右子节点
+            // 因为current为parent的右子节点，同时current只有一个左子节点，这时只需要将parent的右子节点指向current的左子节点即可
+            parent.right = current.left;
+          }
         }
       } else { // current 皆有左子节点，又有右子节点
         /*

@@ -48,6 +48,10 @@ const adminRoutes: RouteItemType[] = [
         component: () => import('src/pages/dataStructures/tree/huffmanTree'),
       },
       {
+        path: '/binarySearchTree',
+        component: () => import('src/pages/dataStructures/tree/binarySearchTree'),
+      },
+      {
         path: '/graph',
         component: () => import('src/pages/dataStructures/graph'),
       },

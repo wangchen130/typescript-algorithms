@@ -60,6 +60,11 @@ const menuTreeOrigin = [
         route: '/dataStructures/huffmanTree',
       },
       {
+        id: 'binarySearchTree',
+        name: '二叉搜索树',
+        route: '/dataStructures/binarySearchTree',
+      },
+      {
         id: 'graph',
         name: '图',
         route: '/dataStructures/graph',

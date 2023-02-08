@@ -65,6 +65,16 @@ const menuTreeOrigin = [
         route: '/dataStructures/binarySearchTree',
       },
       {
+        id: 'avlTree',
+        name: 'AVL树',
+        route: '/dataStructures/avlTree',
+      },
+      {
+        id: 'redBlackTree',
+        name: '红黑树',
+        route: '/dataStructures/redBlackTree',
+      },
+      {
         id: 'graph',
         name: '图',
         route: '/dataStructures/graph',

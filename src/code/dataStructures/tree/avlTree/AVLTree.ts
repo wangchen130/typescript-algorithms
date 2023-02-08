@@ -1,7 +1,7 @@
 export interface IHandler<T> {
-  (node: BstNode<T>): void;
+  (node: AVLTreeNode<T>): void;
 }
-export class BstNode<T> {
+export class AVLTreeNode<T> {
   // 节点的key值，用于排序
   public key: number;
 
@@ -9,10 +9,10 @@ export class BstNode<T> {
   public data: T;
 
   // 左子节点
-  public left: BstNode<T>;
+  public left: AVLTreeNode<T>;
 
   // 右子节点
-  public right: BstNode<T>
+  public right: AVLTreeNode<T>
 
   constructor(key: number, data: T = null) {
     this.key = key;
@@ -71,20 +71,11 @@ export class BstNode<T> {
     // 处理当前节点
     handler(this);
   }
-
 }
 
-// insert(key: number, data: T = null)：向树中插入一个新的键。
-// search(key)：根据key值查找节点，如果存在就查到的节点，不存在就返回null
-// preOrderTraverse：通过先序遍历方式遍历所有节点。
-// inOrderTraverse：通过中序遍历方式遍历所有节点。
-// postOrderTraverse：通过后序遍历方式遍历所有节点。
-// min：返回树中最小的值/键。
-// max：返回树中最大的值/键。
-// remove(key)：根据 key 值删除对应的节点
-export class BinarySearchTree<T> {
+export class AVLTree<T> {
   // 树的根结点
-  public root: BstNode<T>;
+  public root: AVLTreeNode<T>;
 
   constructor() {
     this.root = null;
@@ -133,7 +124,7 @@ export class BinarySearchTree<T> {
    */
   public insert = (key: number, data: T = null) => {
     // 创建新节点
-    const newNode = new BstNode<T>(key, data);
+    const newNode = new AVLTreeNode<T>(key, data);
     if (!this.root) { // 如果没有根结点，则插入时直接作为根结点
       this.root = newNode;
     } else { // 如果有根结点，那么就依次比较key值的大小找到正确的位置进行插入
@@ -146,7 +137,7 @@ export class BinarySearchTree<T> {
    * @param node：需要将新节点插入的树的根结点
    * @param newNode：待插入的新节点
    */
-  private insertNode = (node: BstNode<T>, newNode: BstNode<T>) => {
+  private insertNode = (node: AVLTreeNode<T>, newNode: AVLTreeNode<T>) => {
     // 新节点的值小于node节点，则表明需要将新节点插入到node节点的左边
     if (newNode.key < node.key) {
       if (!node.left) {
@@ -170,9 +161,9 @@ export class BinarySearchTree<T> {
   /**
    * @description 根据key值查找节点，如果存在就查到的节点，不存在就返回null
    * @param key：待查找的key
-   * @return BstNode<T>：查找到节点
+   * @return AVLTreeNode<T>：查找到节点
    */
-  public search = (key: number): BstNode<T> => {
+  public search = (key: number): AVLTreeNode<T> => {
     if (!key) return null;
     return this.searchRecursion(key, this.root);
   }
@@ -181,9 +172,9 @@ export class BinarySearchTree<T> {
    * @description 根据key值递归查找节点，供内部调用
    * @param key：待查找的key
    * @param node：待查找的树的根结点
-   * @return BstNode<T>：查找到节点
+   * @return AVLTreeNode<T>：查找到节点
    */
-  private searchRecursion = (key: number, node: BstNode<T>): BstNode<T> => {
+  private searchRecursion = (key: number, node: AVLTreeNode<T>): AVLTreeNode<T> => {
     if (!node) return null;
     if (key === node.key) {
       return node;
@@ -196,9 +187,9 @@ export class BinarySearchTree<T> {
 
   /**
    * @description 查找二叉搜索树中的最小节点，二叉树为空则返回null
-   * @return BstNode：查找到的节点
+   * @return AVLTreeNode：查找到的节点
    */
-  public min = (): BstNode<T> => {
+  public min = (): AVLTreeNode<T> => {
     let current = this.root;
     while (current.left) {
       current = current.left;
@@ -208,9 +199,9 @@ export class BinarySearchTree<T> {
 
   /**
    * @description 查找二叉搜索树中的最大节点，二叉树为空则返回null
-   * @return BstNode：查找到的节点
+   * @return AVLTreeNode：查找到的节点
    */
-  public max = (): BstNode<T> => {
+  public max = (): AVLTreeNode<T> => {
     let current = this.root;
     while (current.right) {
       current = current.right;
@@ -221,9 +212,9 @@ export class BinarySearchTree<T> {
   /**
    * @description 根据key值删除对应的节点
    * @param key：待删除节点的key值
-   * @return BstNode：如果根据key值找到了删除的节点就在把节点删除后返回删除的节点，找不到就返回null
+   * @return AVLTreeNode：如果根据key值找到了删除的节点就在把节点删除后返回删除的节点，找不到就返回null
    */
-  public remove = (key: number): BstNode<T> => {
+  public remove = (key: number): AVLTreeNode<T> => {
     // 待删除节点的父节点，因为树是单向的，所以要记录父节点
     let parent = null;
     // 当前节点，即要删除的节点
@@ -328,9 +319,9 @@ export class BinarySearchTree<T> {
    *    1）如果前驱节点的父节点是当前节点，则将父节点的左子节点指向前驱节点的左子节点
    *    2）如果前驱节点的父节点不是当前节点，则将父节点的右子节点指向前驱节点的左子节点
    * @param node：需要获取前驱节点的节点
-   * @return BstNode：得到的前驱节点
+   * @return AVLTreeNode：得到的前驱节点
    */
-  private getForerunner = (node: BstNode<T>): BstNode<T> => {
+  private getForerunner = (node: AVLTreeNode<T>): AVLTreeNode<T> => {
     // 定义前驱节点的父节点，默认为当前节点
     let parent = node;
     // 定义前驱节点，默认为当前节点的左子节点

@@ -52,6 +52,14 @@ const adminRoutes: RouteItemType[] = [
         component: () => import('src/pages/dataStructures/tree/binarySearchTree'),
       },
       {
+        path: '/avlTree',
+        component: () => import('src/pages/dataStructures/tree/avlTree'),
+      },
+      {
+        path: '/redBlackTree',
+        component: () => import('src/pages/dataStructures/tree/redBlackTree'),
+      },
+      {
         path: '/graph',
         component: () => import('src/pages/dataStructures/graph'),
       },

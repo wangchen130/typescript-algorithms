@@ -17,9 +17,9 @@ const Comp: React.FC = () => {
         <Collapse.Panel key={1} header="测试代码">
           <Button style={{ marginRight: 10 }} onClick={testHanoiTower}>汉诺塔</Button>
         </Collapse.Panel>
-        <Collapse.Panel key={2} header="动态规划算法介绍">
+        <Collapse.Panel key={2} header="分治算法介绍">
           <Typography>
-            <Title level={3}>动态规划算法</Title>
+            <Title level={3}>分治算法</Title>
             <Paragraph>
               <img src={divideAndConquerAlgorithm1Img} alt="" />
               <img src={divideAndConquerAlgorithm2Img} alt="" />

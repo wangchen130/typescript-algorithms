@@ -4,6 +4,8 @@ import { testAVLTree } from 'src/code/dataStructures/tree/avlTree/testAVLTree';
 import AVLTree1Img from 'src/public/tree/AVLTree1.png';
 import AVLTree2Img from 'src/public/tree/AVLTree2.png';
 import AVLTree3Img from 'src/public/tree/AVLTree3.png';
+import AVLTree4Img from 'src/public/tree/AVLTree4.png';
+import AVLTree5Img from 'src/public/tree/AVLTree5.png';
 
 const { Title, Paragraph } = Typography;
 
@@ -24,6 +26,14 @@ const Comp: React.FC = () => {
             <Title level={3}>左旋转</Title>
             <Paragraph>
               <img src={AVLTree3Img} alt="" />
+            </Paragraph>
+            <Title level={3}>右旋转</Title>
+            <Paragraph>
+              <img src={AVLTree4Img} alt="" />
+            </Paragraph>
+            <Title level={3}>双旋转</Title>
+            <Paragraph>
+              <img src={AVLTree5Img} alt="" />
             </Paragraph>
           </Typography>
         </Collapse.Panel>

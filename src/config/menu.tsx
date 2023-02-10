@@ -182,6 +182,16 @@ const menuTreeOrigin = [
         name: '动态规划算法',
         route: '/otherAlgorithms/dynamicProgramming',
       },
+      {
+        id: 'kmpAlgorithm',
+        name: 'KMP算法',
+        route: '/otherAlgorithms/kmpAlgorithm',
+      },
+      {
+        id: 'greedyAlgorithm',
+        name: '贪心算法',
+        route: '/otherAlgorithms/greedyAlgorithm',
+      },
     ]
   },
 ];

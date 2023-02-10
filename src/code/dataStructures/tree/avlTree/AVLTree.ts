@@ -1,6 +1,14 @@
 export interface IHandler<T> {
   (node: AVLTreeNode<T>): void;
 }
+// insert(key: number, data: T = null)：向树中插入一个新的键。
+// search(key)：根据key值查找节点，如果存在就查到的节点，不存在就返回null
+// preOrderTraverse：通过先序遍历方式遍历所有节点。
+// inOrderTraverse：通过中序遍历方式遍历所有节点。
+// postOrderTraverse：通过后序遍历方式遍历所有节点。
+// min：返回树中最小的值/键。
+// max：返回树中最大的值/键。
+// remove(key)：根据 key 值删除对应的节点
 export class AVLTreeNode<T> {
   // 节点的key值，用于排序
   public key: number;
@@ -19,6 +27,30 @@ export class AVLTreeNode<T> {
     this.data = data;
     this.left = null;
     this.right = null;
+  }
+
+  /**
+   * @description 返回以该节点为根结点的树的高度
+   * @return {number}：高度
+   */
+  public height = (): number => {
+    return Math.max(this.left ? this.left.height() : 0, this.right ? this.right.height() : 0) + 1;
+  }
+
+  /**
+   * @description 返回当前节点的左子树的高度
+   * @return {number}
+   */
+  public leftHeight = (): number => {
+    return this.left ? this.left.height() : 0;
+  }
+
+  /**
+   * @description 返回当前节点的右子树的高度
+   * @return {number}
+   */
+  public rightHeight = () => {
+    return this.right ? this.right.height() : 0;
   }
 
   /**

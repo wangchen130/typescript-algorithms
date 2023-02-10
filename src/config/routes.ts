@@ -146,6 +146,14 @@ const adminRoutes: RouteItemType[] = [
         path: '/dynamicProgramming',
         component: () => import('src/pages/algorithms/dynamicProgramming'),
       },
+      {
+        path: '/kmpAlgorithm',
+        component: () => import('src/pages/algorithms/kmpAlgorithm'),
+      },
+      {
+        path: '/greedyAlgorithm',
+        component: () => import('src/pages/algorithms/greedyAlgorithm'),
+      },
     ],
   },
 ];

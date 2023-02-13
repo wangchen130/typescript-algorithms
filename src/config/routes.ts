@@ -154,6 +154,10 @@ const adminRoutes: RouteItemType[] = [
         path: '/greedyAlgorithm',
         component: () => import('src/pages/algorithms/greedyAlgorithm'),
       },
+      {
+        path: '/primAlgorithm',
+        component: () => import('src/pages/algorithms/primAlgorithm'),
+      },
     ],
   },
 ];

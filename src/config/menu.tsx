@@ -192,6 +192,11 @@ const menuTreeOrigin = [
         name: '贪心算法',
         route: '/otherAlgorithms/greedyAlgorithm',
       },
+      {
+        id: 'primAlgorithm',
+        name: '普里姆算法',
+        route: '/otherAlgorithms/primAlgorithm',
+      },
     ]
   },
 ];

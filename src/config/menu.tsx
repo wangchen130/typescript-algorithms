@@ -197,6 +197,26 @@ const menuTreeOrigin = [
         name: '普里姆算法',
         route: '/otherAlgorithms/primAlgorithm',
       },
+      {
+        id: 'kruskalAlgorithm',
+        name: '克鲁斯卡尔算法',
+        route: '/otherAlgorithms/kruskalAlgorithm',
+      },
+      {
+        id: 'dijkstraAlgorithm',
+        name: '狄杰斯特拉算法',
+        route: '/otherAlgorithms/dijkstraAlgorithm',
+      },
+      {
+        id: 'floydAlgorithm',
+        name: '弗洛伊德算法',
+        route: '/otherAlgorithms/floydAlgorithm',
+      },
+      {
+        id: 'horseChessboardAlgorithm',
+        name: '马踏棋盘算法',
+        route: '/otherAlgorithms/horseChessboardAlgorithm',
+      },
     ]
   },
 ];

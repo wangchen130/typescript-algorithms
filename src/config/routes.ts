@@ -158,6 +158,22 @@ const adminRoutes: RouteItemType[] = [
         path: '/primAlgorithm',
         component: () => import('src/pages/algorithms/primAlgorithm'),
       },
+      {
+        path: '/kruskalAlgorithm',
+        component: () => import('src/pages/algorithms/kruskalAlgorithm'),
+      },
+      {
+        path: '/dijkstraAlgorithm',
+        component: () => import('src/pages/algorithms/dijkstraAlgorithm'),
+      },
+      {
+        path: '/floydAlgorithm',
+        component: () => import('src/pages/algorithms/floydAlgorithm'),
+      },
+      {
+        path: '/horseChessboardAlgorithm',
+        component: () => import('src/pages/algorithms/horseChessboardAlgorithm'),
+      },
     ],
   },
 ];

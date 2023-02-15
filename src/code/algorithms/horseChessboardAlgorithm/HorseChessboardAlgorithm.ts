@@ -68,14 +68,14 @@ export class HorseChessboardAlgorithm {
       }
     }
     /*
-      判断是否走完全部棋盘，使用 step 和应该走的步数比较，该走的步数等于棋盘的格子数减 1，即 step = chessboard.length * chessboard[0].length - 1
+      判断是否走完全部棋盘，使用 step 和应该走的步数比较，因为step是从1开始的，所以该走的步数等于棋盘的格子数，即 step = chessboard.length * chessboard[0].length
       如果没有达到数量，则表示没有完成任务，需要将整个棋盘chessboard和visitedList都置0
       说明: step < chessboard.length * chessboard[0].length  成立的情况有两种：
         1. 棋盘到目前位置,仍然没有走完
         2. 棋盘处于一个回溯过程
       所以需要一个变量标识是否真正地完成
     */
-    // step < chessboard.length * chessboard[0].length: 表明在 step === chessboard.length * chessboard[0].length - 1 就不满足条件了，就会退出循环
+    // step < chessboard.length * chessboard[0].length: 表明在 step === chessboard.length * chessboard[0].length 就不满足条件了，就会退出循环
     if (step < chessboard.length * chessboard[0].length && !this.finished) {
       chessboard[y][x] = 0;
       visitedList[y * chessboard.length + x] = 0;

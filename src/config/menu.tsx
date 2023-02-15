@@ -204,7 +204,7 @@ const menuTreeOrigin = [
       },
       {
         id: 'dijkstraAlgorithm',
-        name: '狄杰斯特拉算法',
+        name: '迪杰斯特拉算法',
         route: '/otherAlgorithms/dijkstraAlgorithm',
       },
       {

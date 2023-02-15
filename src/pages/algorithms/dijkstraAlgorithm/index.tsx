@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Button, Collapse } from 'antd';
-import { testKruskalAlgorithm } from 'src/code/algorithms/kruskalAlgorithm/testKruskalAlgorithm';
+import { testDijkstraAlgorithm } from 'src/code/algorithms/dijkstraAlgorithm/testDijkstraAlgorithm';
 import dijkstraAlgorithm1Img from 'src/public/dijkstra/dijkstraAlgorithm1.png';
 import dijkstraAlgorithm2Img from 'src/public/dijkstra/dijkstraAlgorithm2.png';
 import dijkstraAlgorithm3Img from 'src/public/dijkstra/dijkstraAlgorithm3.png';
@@ -14,11 +14,11 @@ const Comp: React.FC = () => {
     <>
       <Collapse defaultActiveKey={[1, 2]}>
         <Collapse.Panel key={1} header="测试代码">
-          <Button style={{ marginRight: 10 }} onClick={testKruskalAlgorithm}>运行</Button>
+          <Button style={{ marginRight: 10 }} onClick={testDijkstraAlgorithm}>运行</Button>
         </Collapse.Panel>
-        <Collapse.Panel key={2} header="狄杰斯特拉算法介绍">
+        <Collapse.Panel key={2} header="迪杰斯特拉算法介绍">
           <Typography>
-            <Title level={3}>狄杰斯特拉算法：DijkstraAlgorithm</Title>
+            <Title level={3}>迪杰斯特拉算法：DijkstraAlgorithm</Title>
             <Paragraph>
               <img src={dijkstraAlgorithm1Img} alt="" />
               <img src={dijkstraAlgorithm2Img} alt="" />

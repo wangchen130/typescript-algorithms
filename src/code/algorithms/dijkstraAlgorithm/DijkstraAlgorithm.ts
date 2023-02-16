@@ -4,8 +4,8 @@ interface IShortestPathResObj {
   // 路径顶点组成的数组，数组第一个为 出发顶点，最后一个为 终点顶点。
   // 例如： pathArr = ['G', 'B', 'C', 'K']，就表示从顶点 G 到顶点 K 的路径为： G -> B -> C K
   pathVertexArr: string[];
-  // 路径顶点下标组成的数组
-  pathVertexIndexArr: number[];
+  // // 路径顶点下标组成的数组
+  // pathVertexIndexArr: number[];
   // 距离
   distance: number;
 }
@@ -116,8 +116,7 @@ class Graph {
     this.matrix = matrix;
     this.vv = new VisitedVertex(vertex.length, departureIndex);
     this.resArr = vertex.map(() => ({
-      pathVertexArr: [],
-      pathVertexIndexArr: [departureIndex],
+      pathVertexArr: [vertex[departureIndex]],
       distance: 0
     }));
   }
@@ -151,7 +150,8 @@ class Graph {
     let dis = 0;
     // 遍历 matrix[index]
     for (let i = 0, len = this.matrix[index].length; i < len; i++) {
-      debugger;
+      const resObj = this.resArr[i];
+      const { pathVertexArr } = resObj;
       /*
         dis 为 出发顶点到 index 顶点的距离 + index 顶点到 i 顶点的距离
         出发顶点到 index 顶点的距离一直记录在 vv 的 dis中，即为： this.vv.getDis(index)
@@ -174,6 +174,7 @@ class Graph {
       *   将最短距离设置为 dis ，将 i 顶点的前驱节点设置为 index顶点
       * */
       if (!this.vv.isVisited(i) && dis < this.vv.getDis(i)) {
+        // console.log('index  i: ', this.vertex[index], this.vertex[i]);
         // 更新 i 顶点到出发顶点的距离
         this.vv.updateDis(i, dis);
         // 将顶点 i 的前驱顶点更新为顶点 index
@@ -181,6 +182,29 @@ class Graph {
         // 那么 this.vv.dis 保存的就是 出发顶点到处理的这些相连通顶点的距离，这样如果这些相连通顶点还有后继顶点时，
         // 从 this.vv.dis 取出距离 在 加上这些顶点到他们后继顶点的距离，就得到了出发顶点到后继顶点的距离了
         this.vv.updatePre(i, index);
+
+        if (pathVertexArr.length === 1 && pathVertexArr[0] === this.vertex[index]) {
+          pathVertexArr.push(this.vertex[i]);
+        } else if (pathVertexArr.length === 1 && pathVertexArr[0] !== this.vertex[index]) {
+          pathVertexArr.push(this.vertex[index], this.vertex[i]);
+        } else if (
+          pathVertexArr.length > 2 &&
+          pathVertexArr[pathVertexArr.length - 1] === this.vertex[index]
+        ) {
+          pathVertexArr.push(this.vertex[i]);
+        } else if (
+          pathVertexArr.length > 2 &&
+          pathVertexArr[pathVertexArr.length - 2] !== this.vertex[index] &&
+          pathVertexArr[pathVertexArr.length - 1] === this.vertex[i]
+        ) {
+          pathVertexArr.pop();
+          pathVertexArr.pop();
+          pathVertexArr.push(this.vertex[index], this.vertex[i]);
+        }
+
+        // console.log('pathVertexArr:', pathVertexArr.join(' '));
+        // 更新结果数组
+        resObj.distance = dis;
       }
     }
   }
@@ -192,11 +216,13 @@ export class DijkstraAlgorithm {
    * @param vertex：顶点数组
    * @param matrix：领结矩阵
    * @param departureIndex：初始顶点的下标，即从那个顶点开始求到其他顶点的最短距离
+   * @return {IShortestPathResObj[]}：结果数组
    */
-  public static solveShortestPath(vertex: string[], matrix: number[][], departureIndex: number) {
+  public static solveShortestPath(vertex: string[], matrix: number[][], departureIndex: number): IShortestPathResObj[] {
     const graph = new Graph(vertex, matrix, departureIndex);
     graph.djs(departureIndex);
     console.log('graph:', graph);
+    return graph.resArr;
   }
 
   /**

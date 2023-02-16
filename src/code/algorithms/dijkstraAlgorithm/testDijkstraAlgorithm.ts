@@ -13,11 +13,12 @@ export const testDijkstraAlgorithm = () => {
     [INF, INF, INF, 4, 5, INF, 6],
     [2, 3, INF, INF, 4, 6, INF]
   ];
-  const departureIndex = 6;
+  const departureIndex = 1;
   console.log('顶点为：');
   console.log(vertex.join(' '));
   console.log('邻接矩阵为：');
   console.log(matrix);
   console.log('出发顶点为：', departureIndex);
-  DijkstraAlgorithm.solveShortestPath(vertex, matrix, departureIndex);
+  const resArr = DijkstraAlgorithm.solveShortestPath(vertex, matrix, departureIndex);
+  console.log('结果为：', resArr);
 };

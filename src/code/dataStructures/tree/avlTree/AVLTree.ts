@@ -30,6 +30,45 @@ export class AVLTreeNode<T> {
   }
 
   /**
+   * @description 树的左旋转，以当前节点为根结点进行做旋转
+   */
+  public leftRotate() {
+    // 以当前节点的 key 和 data 创建一个新的节点
+    const newNode = new AVLTreeNode(this.key, this.data);
+    // 将新节点的左子节点设置为当前节点的左子节点
+    newNode.left = this.left;
+    // 将新节点的右子节点设置为当前节点的【右子节点】的【左子节点】
+    newNode.right = this.right.left;
+    // 将当前节点的 key 替换为 【右子节点】的 key
+    this.key = this.right.key;
+    // 将当前节点的 data 替换为 【右子节点】的 data
+    this.data = this.right.data;
+    // 将当前节点的【右子节点】设置为【当前节点】的【右子节点】的【右子节点】
+    this.right = this.right.right;
+    // 将当前节点的【左子节点】设置为【新的节点】
+    this.left = newNode;
+  }
+
+  /**
+   * @description 树的右旋转方法
+   */
+  public rightRotate() {
+    // 以【当前节点】的 key 和 data 创建一个新的节点
+    const newNode = new AVLTreeNode(this.key, this.data);
+    // 将【新节点】的【右子节点】指向【当前节点】的【右子节点】
+    newNode.right = this.right;
+    // 将【新节点】的【左子节点】指向【当前节点】的【左子节点】的【右子节点】
+    newNode.left = this.left.right;
+    // 将【当前节点】的 key 和 data 替换为 【当前节点】的【左子节点】的 key 和 data
+    this.key = this.left.key;
+    this.data = this.left.data;
+    // 将【当前节点】的【左子节点】指向【当前节点】的【左子节点】的【左子节点】
+    this.left = this.left.left;
+    // 将【当前节点】的【右子节点】设置为【新节点】
+    this.right = newNode;
+  }
+
+  /**
    * @description 返回以该节点为根结点的树的高度
    * @return {number}：高度
    */
@@ -161,6 +200,23 @@ export class AVLTree<T> {
       this.root = newNode;
     } else { // 如果有根结点，那么就依次比较key值的大小找到正确的位置进行插入
       this.insertNode(this.root, newNode);
+    }
+
+    // 左子树的高度 - 右子树的高度 > 1，需要进行右旋转
+    if (this.root.leftHeight() - this.root.rightHeight() > 1) {
+      if (this.root.left.rightHeight() > this.root.rightHeight()) {
+        this.root.left.leftRotate();
+        this.root.rightRotate();
+      } else {
+        this.root.rightRotate();
+      }
+    } else if (this.root.rightHeight() - this.root.leftHeight() > 1) { // 右子树高度 - 左子树高度 > 1，需要进行左旋转
+      if (this.root.right.leftHeight() > this.root.leftHeight()) {
+        this.root.right.rightRotate();
+        this.root.leftRotate();
+      } else {
+        this.root.leftRotate();
+      }
     }
   }
 

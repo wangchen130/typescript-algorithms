@@ -154,6 +154,7 @@ export default class Sort {
 
   /**
    * 快速排序的内部递归调用方法
+   * 取数组的最后一个元素作为中轴值（pivot）
    * @param array 需要排序的数组
    * @param left 左边的下标
    * @param right 右边的下标
@@ -161,44 +162,37 @@ export default class Sort {
    */
   private static quick<T>(array: T[], left: number, right: number, sortType: TSortType = ASC) {
     if (left >= right) return;
+    // 取数组的最后一个元素作为中轴值（pivot）
+    const pivot = array[right];
+    // 左指针
     let l = left;
-    let r = right - 1;
-    // 找到数组中间的位置
-    let middle = Math.floor((left + right) / 2);
-    // 将中间位置的元素与最后一个进行交换
-    this.swap(array, middle, right);
+    // 右指针
+    let r = right;
     while (l < r) {
-      if (sortType === ASC) { // 升序
-        // 从数组的左边开始，如果值小于最右边的值，即继续向后找，直到找到一个比最右边的值大的值，退出循环
-        while (array[l] < array[right]) {
-          l++;
-        }
-        while (array[r] > array[right]) {
-          r--;
-        }
-      } else { // 降序
-        while (array[l] > array[right]) {
-          l++;
-        }
-        while (array[r] < array[right]) {
-          r--;
-        }
+      if (sortType === ASC) { // 升序排列
+        // 从左边开始，只要当前值小于等于 pivot 就继续向右查找，知道找到一个值大于pivot时，退出循环，此时在左边找到了一个大于pivot的值
+        while (l < right && array[l] <= pivot) l++;
+        // 从右边开始，只要值大于等于pivot，就继续向左查找，直到找到一个小于pivot的值，退出循环，此时 array[r] 一定小于pivot
+        while (r > left && array[r] >= pivot) r--;
+      } else { // 降序排列
+        // 从左开始，如果值大于等于pivot，就继续向右查找，直到遇到一个小于pivot的值，退出循环，此时 array[l] 一定小于 pivot
+        while (l < right && array[l] >= pivot) l++;
+        // 从右边开始，只要值小于等于pivot，就继续向左查找，直到遇到一个大于pivot的值，退出循环，此时array[r] 一定大于 pivot
+        while (r > left && array[r] <= pivot) r--;
       }
-      // 此时，找到了正确的位置，然后将l和r交换
       if (l < r) {
         this.swap(array, l, r);
       } else {
         break;
       }
     }
-    // 以升序举个栗子：退出循环时，array[l]是大于 array[right] 的，同时所有比 array[right] 小的值都在l的左边，
-    // 所有比 array[right] 大的值都在l的右边，这时只需要交换l和right，就将数组分成两部分，所有比array[l]大的都在l的右边。
-    // 所有比 array[l] 小的都在l的左边，则l就找到了自己正确的位置，就不需要再动，这时只要分别向l的左边和l的右边进行递归，就能完成排序
-    this.swap(array, l, right);
-    // 向l的左边进行递归
-    // 注意，此时l已经是正确的位置了，所以这时传递的right值是 l -1 ，因为我们需要将中间的数与传递的right进行交换
+    if (l <= right) {
+      // 退出循环时，l的值就是pivot正确的位置，此时需要将pivot与l进行交换
+      this.swap(array, l, right);
+    }
+    // 向左递归
     this.quick(array, left, l - 1, sortType);
-    // 向l的右边边进行递归
+    // 向右递归
     this.quick(array, l + 1, right, sortType);
   }
 

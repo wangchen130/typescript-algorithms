@@ -67,18 +67,17 @@ export const testShellSort = () => {
 
 export const testQuickSort = () => {
   console.log('====================快速排序测试开始=============');
-
   // 20个400以内的数
-  console.log('20个400以内的数：');
-  let arr = getNumArr(20, 400);
+  console.log('25个400以内的数：');
+  let arr = getNumArr(25, 400);
   console.log(arr.join(' '));
   // 升序
   console.log('====================升序排序=============');
-  Sort.shellSort<number>(arr);
+  Sort.quickSort<number>(arr);
   console.log(arr.join(' '));
   // 降序
   console.log('====================降序排序=============');
-  Sort.shellSort<number>(arr, 'desc');
+  Sort.quickSort<number>(arr, 'desc');
   console.log(arr.join(' '));
 
   // 1个100以内的数
@@ -87,11 +86,11 @@ export const testQuickSort = () => {
   console.log(arr1.join(' '));
   // 升序
   console.log('====================升序排序=============');
-  Sort.shellSort<number>(arr1);
+  Sort.quickSort<number>(arr1);
   console.log(arr1.join(' '));
   // 降序
   console.log('====================降序排序=============');
-  Sort.shellSort<number>(arr1, 'desc');
+  Sort.quickSort<number>(arr1, 'desc');
   console.log(arr1.join(' '));
 
   // 2个1000以内的数
@@ -100,12 +99,21 @@ export const testQuickSort = () => {
   console.log(arr2.join(' '));
   // 升序
   console.log('====================升序排序=============');
-  Sort.shellSort<number>(arr2);
+  Sort.quickSort<number>(arr2);
   console.log(arr2.join(' '));
   // 降序
   console.log('====================降序排序=============');
-  Sort.shellSort<number>(arr2, 'desc');
+  Sort.quickSort<number>(arr2, 'desc');
   console.log(arr2.join(' '));
+  const arr3 = [211, 283, 4, 74, 216, 222, 365, 388, 31, 171, 247, 184, 382, 219, 77, 75, 14, 45, 87, 78];
+  console.log('排序前：');
+  console.log(arr3.join(' '));
+  console.log('====================升序排序=============');
+  Sort.quickSort(arr3, 'asc');
+  console.log(arr3.join(' '));
+  console.log('====================降序排序=============');
+  Sort.quickSort(arr3, 'desc');
+  console.log(arr3.join(' '));
 };
 
 export const testMergeSort = () => {

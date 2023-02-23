@@ -202,7 +202,7 @@ export class AVLTree<T> {
       this.insertNode(this.root, newNode);
     }
 
-    // 左子树的高度 - 右子树的高度 > 1，需要进行右旋转
+    // 左子树的高度 - 右子树的高度 > 1，左比右高，需要进行右旋转
     if (this.root.leftHeight() - this.root.rightHeight() > 1) {
       if (this.root.left.rightHeight() > this.root.rightHeight()) {
         this.root.left.leftRotate();
@@ -210,7 +210,7 @@ export class AVLTree<T> {
       } else {
         this.root.rightRotate();
       }
-    } else if (this.root.rightHeight() - this.root.leftHeight() > 1) { // 右子树高度 - 左子树高度 > 1，需要进行左旋转
+    } else if (this.root.rightHeight() - this.root.leftHeight() > 1) { // 右子树高度 - 左子树高度 > 1，右比左高，需要进行左旋转
       if (this.root.right.leftHeight() > this.root.leftHeight()) {
         this.root.right.rightRotate();
         this.root.leftRotate();
